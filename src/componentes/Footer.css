@@ -1,0 +1,29 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #3E2723;
+  color: #D7CCC8;
+  padding: 20px;
+}
+
+/* lado esquerdo */
+.footer-left {
+  flex: 1;
+}
+
+/* centro */
+.footer-center {
+  flex: 2;
+  text-align: center;
+}
+
+/* logo */
+.logo-footer {
+  width: 80px;
+  transition: transform 0.3s;
+}
+
+.logo-footer:hover {
+  transform: scale(1.1);
+}
