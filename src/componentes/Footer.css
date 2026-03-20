@@ -5,6 +5,8 @@
   background: #3E2723;
   color: #D7CCC8;
   padding: 20px;
+  width: calc(100% - 60px);
+  margin-left: 60px;
 }
 
 /* lado esquerdo */

@@ -1,0 +1,28 @@
+.hero {
+  position: relative;
+  height: 200vh;
+  background: #5a2a1f;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.hero-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 120px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.05);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.track {
+  font-size: 120px;
+  font-weight: bold;
+  opacity: 0.05;
+  letter-spacing: 10px;
+  white-space: nowrap;
+}
