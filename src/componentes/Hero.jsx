@@ -29,6 +29,12 @@ function Hero() {
       <div className="track">COFFEE COEMA COFFEE COEMA</div>
       <div className="track">COFFEE COEMA COFFEE COEMA</div>
       <div className="track">COFFEE COEMA COFFEE COEMA</div>
+
+      <img
+      src="/src/assets/cafe1.png"
+      alt="Café"
+      className="cafe1"
+      ></img>
     </section>
   );
 }
