@@ -1,12 +1,10 @@
-.carousel {
+.cards-container {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px;
-  flex-wrap: wrap;
-}
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s ease;
-  gap: 20px;
+  flex-wrap: wrap;         /* Permite que pulem de linha */
+  justify-content: center;    /* Centraliza os cards no meio da tela */
+  gap: 25px;               /* Espaçamento entre os cards */
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 1000px;       /* Limita a largura para não espalhar demais */
+  margin: 0 auto;          /* Centraliza o bloco todo */
 }

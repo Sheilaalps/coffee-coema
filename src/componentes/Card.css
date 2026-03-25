@@ -1,46 +1,93 @@
 .card {
-  width: 190px;
-  height: 220px;
+  width: 220px;          /* Largura reduzida */
+  height: 300px;         /* Altura proporcional */
   perspective: 1000px;
-}
-
-.card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #3E2723;
-  color: white;
-  border-radius: 10px;
-  backface-visibility: hidden;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin: 10px;          /* Espaço entre os cards */
 }
 
 .card-front img {
   width: 100%;
-  height: 120px;
+  height: 140px;         /* Imagem menor para sobrar espaço pro texto */
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
-.card-back {
-  transform: rotateY(180deg);
+.card-front h3 {
+  font-size: 1.1rem;     /* Título menor */
+  margin-top: 15px;
+}
+
+.card-back p {
+  font-size: 0.9rem;     /* Texto interno menor */
   padding: 10px;
+}
+
+/* O tamanho do card - Agora menor */
+.card {
+  background-color: transparent;
+  width: 200px;         /* Largura menor como você pediu */
+  height: 280px;        /* Altura proporcional */
+  perspective: 1000px;  /* Cria o efeito de profundidade 3D */
+}
+
+/* O container que realmente gira */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
   text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+/* Gira o card quando passa o mouse */
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Estilo comum para as duas faces */
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Esconde a face de trás ao girar */
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Frente do Card */
+.card-front {
+  background-color: #2a1a15;
+  color: white;
+}
+
+.card-front img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card-front h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Verso do Card (Aparece ao girar) */
+.card-back {
+  background-color: #4b2c20;
+  color: #f5f5f5;
+  transform: rotateY(180deg); /* Já começa invertido */
+}
+
+.card-back p {
+  font-size: 0.85rem;
+  line-height: 1.4;
 }

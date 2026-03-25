@@ -3,52 +3,114 @@
   left: 0;
   top: 0;
   height: 100vh;
-
-  width: 60px;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
-               0 4px 20px rgba(0, 0, 0, 0.2);
-    
-
-  transition: width 0.3s;
+  width: 70px; 
+ /* AJUSTE AQUI: O último número (0.4) controla a transparência (0 a 1) */
+  background-color: rgba(42, 26, 21, 0.4); 
+  
+  /* O Blur cria o efeito de vidro embaçado */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); /* Para funcionar no Safari/iOS */
+  
+  /* Uma borda bem fininha ajuda a dar destaque no fundo escuro */
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 40px 0;    /* Respiro no topo e na base */
+  
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   z-index: 1000;
 }
 
-/* abre no hover */
 .sidebar:hover {
-  width: 180px;
+  width: 120px; 
 }
 
+/* Container do Logo */
+.sidebar-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px; 
+  mix-blend-mode: screen; 
+  filter: drop-shadow(0 0 5px rgba(255, 183, 0, 0.3));
+}
+
+.sidebar-logo img {
+  width: 80px;
+  height: auto;
+}
+
+/* Menu e Itens */
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  padding: 20px;
-  color: #D7CCC8;
+  gap: 35px;
+  width: 100%;
+  flex: 1; /* A MÁGICA: Faz o menu ocupar todo o espaço vertical disponível */
 }
 
 .item {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center;
+  gap: 8px; 
   cursor: pointer;
-  transition: transform 0.3s;
+  width: 100%;
+  color: #D7CCC8;
 }
 
 .item:hover {
-  transform: scale(1.1);
+  color: #fff;
 }
 
-/* texto escondido */
+/* Configuração dos ícones */
+.icon-home, 
+.icon-coffee, 
+.icon-access {
+  width: 28px;
+  height: 28px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+
+/* Garante que o ícone de acesso carregue (cheque o nome no public) */
+.icon-access {
+  background-image: url('/access.svg'); /* ou .png */
+}
+
+/* Texto com transição suave */
 .text {
   opacity: 0;
+  visibility: hidden;
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 9px; /* Menor para o empilhamento vertical */
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: opacity 0.3s;
+  white-space: nowrap;
 }
 
-/* aparece no hover */
 .sidebar:hover .text {
   opacity: 1;
+  visibility: visible;
+}
+.item-logout {
+  margin-top: auto; /* EMPURRA o item para o final do container */
+  padding-bottom: 10px;
+}
+
+.icon-logout {
+  width: 28px;
+  height: 28px;
+  background-image: url('/logout.svg'); /* Garanta que o arquivo existe */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0) invert(1);
 }
