@@ -30,10 +30,11 @@
 .search-container {
   display: flex;
   justify-content: center; /* Garante que o SVG fique no meio exato */
+  
 }
 /* Exemplo de estilo para a barra de pesquisa (adicione esta classe no seu input) */
 .search-input {
-  width: 350px; /* Ajuste a largura como preferir */
+  width: 50px; /* Ajuste a largura como preferir */
   height: 40px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -69,7 +70,7 @@
   display: block !important;
   gap: 16px;
   /* Aumente aqui os valores até ficar do tamanho que você quer */
-  width: 100px !important;   /* Teste com 150px, é bem grande */
+  width: 50px !important;   /* Teste com 150px, é bem grande */
   height: 10px !important;   /* Aumentei a altura para ficar bem visível */
   
 
