@@ -1,0 +1,114 @@
+/* ==========================================================================
+   CONFIGURAÇÃO DO BANNER (FLOW)
+   ========================================================================== */
+.banner-section {
+  position: relative;
+  width: calc(100% - 90px); /* Respeita a sidebar de 90px */
+  margin-left: 90px;
+  min-height: 60vh;        /* Altura menor que o Hero para dar o "flow" */
+  background-color: #361712; /* O marrom que unifica tudo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+.banner-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  max-width: 900px;
+  z-index: 2;
+}
+
+.banner-title {
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 4rem;
+  letter-spacing: 12px;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.banner-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 2px;
+  max-width: 600px;
+}
+
+.banner-btn {
+  padding: 15px 45px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-btn:hover {
+  background-color: #ffffff;
+  color: #361712;
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   @MEDIA (RESPONSIVIDADE)
+   ========================================================================== */
+
+/* Ajuste para tablets */
+@media (max-width: 1024px) {
+  .banner-section {
+    width: 100%;
+    margin-left: 0; /* Remove a margem da sidebar no mobile/tablet */
+  }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 2.2rem;
+    letter-spacing: 5px;
+  }
+
+  .banner-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .banner-section {
+    padding: 60px 15px;
+  }
+
+  /* Container que segura o vídeo parado */
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 1; /* Camada de baixo */
+  overflow: hidden;
+  /* Mova a lógica da sidebar para o wrapper, não para o componente */
+  width: calc(100% - 90px);
+  margin-left: 90px;
+}
+
+/* Container do Banner e o resto que sobe */
+.reveal-content {
+  position: relative;
+  z-index: 2; /* Camada de cima (cobre o vídeo) */
+  background-color: #361712; /* Mesma cor do Banner para não ter fresta */
+  box-shadow: 0 -40px 80px rgba(0,0,0,0.5);
+  /* Também respeita a sidebar */
+  width: calc(100% - 90px);
+  margin-left: 90px;
+}
+.hero, .banner-section {
+  width: 100%; /* Ocupa 100% do wrapper pai */
+  margin-left: 0; /* Remove a margem interna */
+  background-color: transparent; /* Importante: deixe o Hero transparente para ver o vídeo */
+}
+}

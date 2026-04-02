@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import "./Hero.css";
+// Importar a imagem garante que o Vite a encontre na build
+import cafeImg from "../assets/cafe1.png"; 
 
 function Hero() {
   useEffect(() => {
@@ -7,6 +9,7 @@ function Hero() {
       const scrollY = window.scrollY;
       const tracks = document.querySelectorAll(".track");
       tracks.forEach((track, index) => {
+        // Velocidade alternada para o efeito de parallax lateral
         const speed = index % 2 === 0 ? 0.3 : -0.3;
         track.style.transform = `translateX(${scrollY * speed}px)`;
       });
@@ -17,34 +20,37 @@ function Hero() {
 
   return (
     <section className="hero">
-      {/* --- O HEADER FLUTUANTE (TOP BAR) --- */}
+      {/* VÍDEO DE FUNDO */}
+      <video autoPlay loop muted playsInline className="hero-video">
+        <source src="/video.mp4" type="video/mp4" />
+      </video>
+
+      {/* HEADER / NAV OVERLAY */}
       <header className="hero-header-overlay">
-        {/* Container que alinha Logo + Título */}
         <div className="hero-brand-group">
-       <img src="/coema.svg" alt="Logo Coema" className="logo-coema" />
+          <img src="/coema.svg" alt="Logo Coema" className="logo-coema" />
         </div>
 
-        {/* No seu Sidebar.jsx ou Hero.jsx */}
-<div className="search-container">
-  <img src="/source.svg" alt="Source" className="icon-s" />
-</div>
+        <div className="search-container">
+          <div className="search-box">
+            <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" placeholder="Pesquisar..." className="search-input" />
+          </div>
+        </div>
+      </header>
 
-        </header>
+      {/* TEXTOS EM MOVIMENTO (MARQUEE) */}
+      <div className="tracks-container">
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="track">COFFEE COEMA COFFEE COEMA</div>
+        ))}
+      </div>
 
-      {/* TRACKS DE FUNDO */}
-      <div className="track">COFFEE COEMA COFFEE COEMA</div>
-            <div className="track">COFFEE COEMA COFFEE COEMA</div>
-      <div className="track">COFFEE COEMA COFFEE COEMA</div>
-            <div className="track">COFFEE COEMA COFFEE COEMA</div>
-      <div className="track">COFFEE COEMA COFFEE COEMA</div>
-             <div className="track">COFFEE COEMA COFFEE COEMA</div>
-
-      {/* 2. IMAGEM PRINCIPAL (MOCKUP DO CAFÉ) */}
-      <img
-        src="/src/assets/cafe1.png"
-        alt="Café"
-        className="cafe1"
-      />
+      {/* IMAGEM PRINCIPAL (MOCKUP) */}
+      <img src={cafeImg} alt="Café" className="cafe1" />
     </section>
   );
 }

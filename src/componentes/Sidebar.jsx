@@ -3,29 +3,42 @@ import "./Sidebar.css";
 function Sidebar() {
   return (
     <div className="sidebar">
-      {/* O LOGO DO SOL QUE VOCÊ JÁ SUBIU */}
-      <div className="sidebar-logo">
-        <img src="/logo.png" alt="Logo Coema" className="logo-img-sidebar" />
-      </div>
+  <div className="sidebar-logo">
+    <img src="/logo.png" alt="Logo" />
+  </div>
 
-      <div className="menu">
-        {/* ITEM HOME */}
-        <div className="item">
-          <img src="/home.png" alt="Home" className="icon-home" />
-          <span className="text">Home</span>
-          
-          <img src="/coffee.png" alt="Coffee" className="icon-coffee" />
-          <span className="text">Coffee</span>
-          <img src="/acess.png" alt="Access" className="icon-access" />
-          <span className="text">Access</span>
-        </div>
+  <div className="menu">
+    <div className="item">
+      <div className="icon-wrapper">
+        <img src="/home.png" className="icon-sidebar" alt="Início" />
       </div>
-
-      {/* ÍCONES DE BAIXO (LOGOUT/CONFIG) SE TIVER */}
-      <div className="menu-bottom">
-        <img src="/log-out.png" alt="Sair" className="icon-logout" />
-      </div>
+      <span className="item-name">Início</span>
     </div>
+
+    <div className="item">
+      <div className="icon-wrapper">
+        <img src="/coffee.png" className="icon-sidebar" alt="Cardápio" />
+      </div>
+      <span className="item-name">Cardápio</span>
+    </div>
+
+    <div className="item">
+      <div className="icon-wrapper">
+        <img src="/acess.png" className="icon-sidebar" alt="Perfil" />
+      </div>
+      <span className="item-name">Perfil</span>
+    </div>
+  </div>
+
+  <div className="item-logout">
+    <div className="item">
+      <div className="icon-wrapper">
+        <img src="/log-out.png" className="icon-sidebar" alt="Sair" />
+      </div>
+      <span className="item-name">Sair</span>
+    </div>
+  </div>
+</div>
   );
 }
 

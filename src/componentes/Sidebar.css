@@ -1,116 +1,99 @@
+/* Sidebar.css */
+
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 70px; 
- /* AJUSTE AQUI: O último número (0.4) controla a transparência (0 a 1) */
-  background-color: rgba(42, 26, 21, 0.4); 
-  
-  /* O Blur cria o efeito de vidro embaçado */
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px); /* Para funcionar no Safari/iOS */
-  
-  /* Uma borda bem fininha ajuda a dar destaque no fundo escuro */
+  width: 80px; /* Largura fechada */
+  background: rgba(244, 244, 244, 0.159);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(15px);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  padding: 40px 0;    /* Respiro no topo e na base */
-  
+  padding: 30px 0;
+  z-index: 1000;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  z-index: 1000;
 }
 
 .sidebar:hover {
-  width: 120px; 
+  width: 120px; /* Largura aberta */
 }
 
-/* Container do Logo */
+/* Centraliza o Logo no topo */
 .sidebar-logo {
-  width: 100%;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
-  margin-bottom: 50px; 
-  mix-blend-mode: screen; 
-  filter: drop-shadow(0 0 5px rgba(255, 183, 0, 0.3));
+  align-items: center;
+  width: 100%;
+  min-width: 80px;
 }
 
 .sidebar-logo img {
-  width: 80px;
+  width: 45px;
   height: auto;
 }
 
-/* Menu e Itens */
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 10px;
   width: 100%;
-  flex: 1; /* A MÁGICA: Faz o menu ocupar todo o espaço vertical disponível */
 }
 
+/* O ITEM AGORA É UM FLEX CONTAINER HORIZONTAL */
 .item {
   display: flex;
-  flex-direction: column; 
-  align-items: center;    
-  justify-content: center;
-  gap: 8px; 
-  cursor: pointer;
+  align-items: center; /* Alinha ícone e texto verticalmente ao centro */
+  justify-content: flex-start; /* Alinha o conteúdo ao início (esquerda) */
+  height: 55px;
   width: 100%;
-  color: #D7CCC8;
+  cursor: pointer;
+  transition: background 0.3s;
+  padding: 0; 
 }
 
 .item:hover {
-  color: #fff;
+  background: rgba(255, 183, 0, 0.1);
 }
 
-/* Configuração dos ícones */
-.icon-home, 
-.icon-coffee, 
-.icon-access {
+/* ESSA DIV É O SEGREDO DO ALINHAMENTO DO ÍCONE */
+.icon-wrapper {
+  min-width: 80px; /* Mesma largura da barra fechada */
+  display: flex;
+  justify-content: center; /* Centraliza o ícone nos 80px */
+  align-items: center;
+}
+
+.icon-sidebar {
   width: 28px;
   height: 28px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   filter: brightness(0) invert(1);
-  transition: transform 0.3s;
+  opacity: 0.7;
 }
 
-/* Garante que o ícone de acesso carregue (cheque o nome no public) */
-.icon-access {
-  background-image: url('/access.svg'); /* ou .png */
-}
-
-/* Texto com transição suave */
-.text {
-  opacity: 0;
-  visibility: hidden;
-  font-family: 'Lexend Tera', sans-serif;
-  font-size: 9px; /* Menor para o empilhamento vertical */
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: opacity 0.3s;
+/* TEXTO: Só aparece quando o mouse está na barra */
+.item-name {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
   white-space: nowrap;
+  
+  /* Escondido por padrão */
+  opacity: 0;
+  transform: translateX(-10px); /* Leve efeito de deslize */
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.sidebar:hover .text {
+.sidebar:hover .item-name {
   opacity: 1;
-  visibility: visible;
-}
-.item-logout {
-  margin-top: auto; /* EMPURRA o item para o final do container */
-  padding-bottom: 10px;
+  transform: translateX(0);
 }
 
-.icon-logout {
-  width: 28px;
-  height: 28px;
-  background-image: url('/logout.svg'); /* Garanta que o arquivo existe */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: brightness(0) invert(1);
+.item-logout {
+  margin-top: auto;
+  width: 100%;
 }
