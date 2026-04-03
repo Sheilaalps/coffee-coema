@@ -3,34 +3,43 @@
    ========================================================================== */
 .banner-section {
   position: relative;
-  width: calc(100% - 90px); /* Respeita a sidebar de 90px */
+  /* Garante que o banner ocupe apenas o que sobra da sidebar (90px) */
+  width: calc(100% - 90px); 
   margin-left: 90px;
-  min-height: 60vh;        /* Altura menor que o Hero para dar o "flow" */
-  background-color: #361712; /* O marrom que unifica tudo */
+  
+  min-height: 60vh;
+  background-color: #361712;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Centraliza a logo horizontalmente no espaço marrom */
+  align-items: center;     /* Centraliza verticalmente */
   padding: 80px 20px;
-  overflow: hidden;
+  box-sizing: border-box; /* Crucial para o cálculo da largura */
 }
 
 .banner-container {
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 25px;
   max-width: 900px;
+  width: 100%;
   z-index: 2;
 }
 
+
 .banner-title {
   font-family: 'Lexend Tera', sans-serif;
-  font-size: 4rem;
-  letter-spacing: 12px;
+  /* Diminuindo o tamanho e o respiro entre letras */
+  font-size: 2.8rem; 
+  letter-spacing: 8px; 
+  
   color: #ffffff;
   margin: 0;
   text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  line-height: 1.2;
 }
 
 .banner-subtitle {
@@ -59,13 +68,12 @@
 
 /* ==========================================================================
    @MEDIA (RESPONSIVIDADE)
-   ========================================================================== */
 
 /* Ajuste para tablets */
 @media (max-width: 1024px) {
   .banner-section {
     width: 100%;
-    margin-left: 0; /* Remove a margem da sidebar no mobile/tablet */
+    margin-left: 0; 
   }
 }
 
@@ -78,6 +86,7 @@
 
   .banner-subtitle {
     font-size: 0.95rem;
+    position: inherit;
   }
 
   .banner-section {

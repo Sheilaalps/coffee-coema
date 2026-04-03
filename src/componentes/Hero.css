@@ -10,6 +10,14 @@
   flex-direction: column;
   background-color: transparent; /* Permite ver o vídeo que está no fundo */
 }
+.hero-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  /* Margem zero para encostar na borda da 'caixa' que começa após a sidebar */
+  margin-left: 10px; 
+}
 
 .hero-video {
   position: absolute;
@@ -22,63 +30,81 @@
   filter: brightness(0.5); /* Escurece o vídeo para o texto branco destacar */
 }
 
+.logo-coema {
+  width: 220px !important; /* Ajuste para o tamanho desejado */
+  height: auto !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  object-fit: contain;
+}
+
 /* ==========================================================================
-   2. HEADER (CORRIGE O TEXTO CORTADO PELA SIDEBAR)
+   2. HEADER (AJUSTADO PARA FOTO DA LOGO)
    ========================================================================== */
 .hero-header-overlay {
   position: absolute;
   top: 35px;
-  left: 0;
-  width: 100%;
-  /* O segredo: 90px (largura da sidebar) + 5% de respiro.
-     Isso empurra o texto "COFFEE COEMA" para fora da zona da sidebar.
-  */
-  padding: 0 5% 0 calc(90px + 2%); 
+  /* Se sua sidebar tem 80px, o header começa no 80px */
+  left: 80px; 
+  /* Ocupa o restante da tela */
+  width: calc(100% - 80px); 
+  
   display: flex;
-  justify-content: space-between;
+  /* Mudamos para flex-start para a logo colar na esquerda (perto da sidebar) */
+  justify-content: flex-start; 
   align-items: center;
-  z-index: 20;
-  box-sizing: border-box; /* Importante para o padding não estourar a largura */
+  
+  /* O padding agora serve apenas como respiro interno */
+  padding: 0 20px; 
+  z-index: 1001;
+  box-sizing: border-box;
 }
-
-.hero-brand-group {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.hero-brand-group span {
-  font-family: 'Lexend Tera', sans-serif;
-  color: #fff;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  white-space: nowrap; /* Impede que o nome quebre linha e seja cortado */
-}
-
 /* ==========================================================================
    3. ELEMENTOS VISUAIS (TRACKS & MOCKUP)
    ========================================================================== */
+/* Container das trilhas */
 .tracks-container {
   position: absolute;
   top: 50%;
-  left: 0;
   transform: translateY(-50%);
   width: 100%;
-  z-index: 5;
-  /* Alinha os textos gigantes de fundo com o início do conteúdo */
-  padding-left: calc(90px + 2%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaço entre as linhas */
 }
 
 .track {
   font-family: 'Lexend Tera', sans-serif;
-  color: rgba(255, 255, 255, 0.07);
-  font-size: 8.5rem;
+  font-size: 7rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.03); /* Transparência do fundo */
   white-space: nowrap;
   text-transform: uppercase;
-  line-height: 0.85;
-  margin: 0;
-  pointer-events: none; /* Não interfere nos cliques do mouse */
+  line-height: 0.9;
+  pointer-events: none;
+  transition: transform 0.1s linear; /* Suaviza o movimento do scroll */
+}
+
+/* --- O SEGREDO DO DESALINHAMENTO --- */
+
+/* Linhas 1, 3, 5 (Ímpares): Começam mais para a esquerda */
+.track:nth-child(odd) {
+  margin-left: -20%; 
+}
+
+/* Linhas 2, 4, 6 (Pares): Começam mais para a direita */
+.track:nth-child(even) {
+  margin-left: 15%;
+}
+
+/* Se quiser um desalinhamento ainda mais aleatório: */
+.track:nth-child(3n) {
+  margin-left: -5%;
+}
+
+.track:nth-child(4n) {
+  margin-left: 25%;
 }
 
 .cafe1 {
@@ -126,4 +152,67 @@
   width: 18px;
   color: #fff;
   opacity: 0.6;
+}
+.about-section {
+ 
+  top: 35px;
+  right: 20px; /* Posiciona o "Sobre" no canto direito */
+  z-index: 1001;
+}
+.contact-section {
+ 
+  top: 35px;
+  right: 20px; /* Posiciona o "Contato" no canto direito */
+  z-index: 1001;
+}
+
+/* --- RESPONSIVIDADE --- */
+
+/* Telas Médias (Tablets) */
+@media (max-width: 1024px) {
+  .hero-header-overlay {
+    padding: 0 30px;
+    gap: 20px;
+  }
+  
+  .track {
+    font-size: 6rem; /* Diminui o texto de fundo */
+  }
+}
+
+/* Telas Pequenas (Celulares) */
+@media (max-width: 768px) {
+  .hero-header-overlay {
+    /* REMOVE o recuo de 120px para a logo não sumir na direita */
+    padding: 0 20px !important; 
+    flex-direction: row; /* Mantém logo e busca na mesma linha se couber, ou use column */
+    justify-content: space-between;
+    top: 15px;
+    left: 0;
+  }
+
+  .search-box {
+    width: 90%; /* Busca ocupa quase toda a largura no celular */
+    max-width: 320px;
+  }
+
+  .hero-title {
+    font-size: 0.9rem; /* Título menor para não quebrar linha */
+    text-align: center;
+  }
+
+  .cafe1 {
+    width: 220px; /* Diminui a imagem do café no mobile */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza o café */
+  }
+
+  .track {
+    font-size: 4rem;
+    line-height: 1.2;
+  }
+.logo-coema {
+  width: 35px; /* Diminui a logo no mobile */
+}
+  
 }

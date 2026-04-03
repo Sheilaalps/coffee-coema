@@ -1,25 +1,40 @@
 /* Sidebar.css */
-
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 80px; /* Largura fechada */
-  background: rgba(244, 244, 244, 0.159);
-  backdrop-filter: blur(5px);
+  width: 90px; /* Largura fechada */
+  
+  /* EFEITO VIDRO */
+  background: rgba(255, 255, 255, 0.05); 
+  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  padding: 30px 0;
-  z-index: 1000;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  overflow: hidden; /* Importante para o texto não vazar antes da hora */
+  z-index: 2000;
+}
+
+.sidebar.open {
+  width: 260px; /* Largura aberta */
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 25px; /* Ajuste o padding para o ícone ficar no lugar certo */
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .sidebar:hover {
-  width: 120px; /* Largura aberta */
+  width: 180px !important; /* Aumente para 260px para o texto não cortar */
 }
 
 /* Centraliza o Logo no topo */
@@ -96,4 +111,118 @@
 .item-logout {
   margin-top: auto;
   width: 100%;
+}
+
+.sidebar-item .icon {
+  min-width: 40px; /* Garante que o ícone ocupe sempre o mesmo espaço */
+  display: flex;
+  justify-content: center;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 25px; /* Espaço interno para não encostar na borda */
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+/* O ÍCONE: Ele é a âncora fixa */
+.nav-icon {
+  min-width: 40px;  /* Garante que o ícone ocupe sempre o mesmo espaço */
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;   /* Impede o ícone de ser "esmagado" */
+}
+
+/* O TEXTO: Ele aparece ao lado sem empurrar o ícone */
+.nav-text {
+  margin-left: 15px;
+  white-space: nowrap; /* Impede o texto de quebrar linha */
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 0.9rem;
+  
+  /* Controle de visibilidade suave */
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+}
+
+/* Quando a sidebar estiver aberta (via classe no React) */
+.sidebar.open .nav-text {
+  opacity: 1;
+}
+.sidebar-footer {
+  margin-top: auto; /* Empurra o botão para o fim da sidebar */
+  padding-bottom: 20px;
+  width: 100%;
+}
+/* O item de Sair deve usar as mesmas classes .nav-item e .nav-icon */
+/* --- ESTILO PARA CELULAR (Mobile) --- */
+@media (max-width: 768px) {
+  /* 1. Oculta a sidebar lateral fixa */
+  .sidebar {
+    left: -100% !important; /* Joga para fora da tela */
+    width: 250px !important; 
+    z-index: 9999;
+    transition: left 0.4s ease;
+  }
+
+  /* 2. Mostra a sidebar quando clicado */
+  .sidebar.active {
+    left: 0 !important;
+  }
+
+  /* 3. Estilo do Botão Hambúrguer */
+  .mobile-burger {
+    display: flex !important;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  /* 4. LIBERAR ESPAÇO PARA O BANNER (FIM DO CORTE DE TEXTO) */
+  .hero-header-overlay, 
+  .banner-section, 
+  .reveal-content,
+  .sticky-wrapper {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 20px !important;
+  }
+
+  .banner-title {
+    font-size: 1.8rem !important; /* Reduz para caber no celular */
+    white-space: normal !important; /* Permite quebrar linha */
+    text-align: center;
+  }
+
+  /* Escurece o fundo quando o menu abre */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 9998;
+  }
+}
+
+/* Esconde o botão no Desktop */
+@media (min-width: 769px) {
+  .mobile-burger {
+    display: none;
+  }
 }
