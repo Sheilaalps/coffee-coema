@@ -1,4 +1,6 @@
-/* --- CONFIGURAÇÕES GERAIS --- */
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS (DESKTOP & GLOBAL)
+   ========================================================================== */
 .hero {
   position: relative;
   height: 100vh;
@@ -13,10 +15,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  /* O segredo da centralização: translate + cover */
   transform: translate(-50%, -50%);
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover; 
   z-index: 0;
   filter: brightness(0.5);
 }
@@ -37,12 +42,15 @@
 .logo-coema {
   width: 220px;
   height: auto;
+  display: block;
 }
 
 .search-box {
   position: relative;
-  margin-left: auto; /* Empurra a busca para a direita no desktop */
+  margin-left: auto; 
   right: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .search-input {
@@ -56,12 +64,61 @@
   color: #fff;
 }
 
-/* --- RESPONSIVIDADE MOBILE (768px) --- */
+.search-icon {
+  position: absolute;
+  left: 15px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* --- TRILHAS DE TEXTO (TRACKS) --- */
+.tracks-container {
+  position: absolute;
+  top: 0;           /* Começa no topo */
+  left: 0;
+  width: 100%;
+  height: 100%;     /* Ocupa a altura toda do Hero */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; /* ESPALHA as linhas igualmente de cima a baixo */
+  padding: 10vh 0;  /* Dá um respiro no topo e na base */
+  z-index: 1;
+  pointer-events: none;
+}
+
+  .track {
+    /* Tamanho responsivo: 12vw faz a fonte se adaptar à largura do celular */
+    font-size: 12vw !important; 
+    font-weight: 900;
+    line-height: 0.8;
+    color: rgba(255, 255, 255, 0.04); /* Deixa bem sutil para não brilhar mais que a logo */
+    letter-spacing: -2px; /* Deixa as letras mais "juntas" (estilo editorial) */
+  }
+
+  /* Desalinhamento lateral para o efeito de scroll ficar mais dinâmico */
+  .track:nth-child(odd) {
+    margin-left: -10%;
+  }
+  .track:nth-child(even) {
+    margin-left: 5%;
+  }
+
+/* ==========================================================================
+   2. RESPONSIVIDADE MOBILE (CELULARES)
+   ========================================================================== */
 @media (max-width: 768px) {
   
+  .hero {
+    /* dvh evita que o vídeo pule quando a barra do navegador sobe/desce */
+    height: 100vh;
+    height: 100dvh; 
+  }
+
   .hero-video {
-    height: 100vh !important;
+    /* Força o vídeo a ignorar a proporção horizontal e preencher a vertical */
+    height: 100dvh !important;
     width: 100vw !important;
+    object-position: center; 
   }
 
   .hero-header-overlay {
@@ -77,20 +134,20 @@
   }
 
   .search-input {
-    display: none; /* Esconde campo de texto no mobile */
+    display: none; /* Esconde campo de texto */
   }
 
   .search-icon {
-    color: #fff;
-    width: 26px;
-    height: 26px;
+    position: static;
+    width: 28px;
+    height: 28px;
   }
 
-  /* BOTÕES FLUTUANTES SEM RETÂNGULO */
+  /* BOTÕES FLUTUANTES (ABOUT & CONTACT) */
   .about-section, 
   .contact-section {
     position: absolute !important;
-    bottom: 40px !important;
+    bottom: 50px !important; /* Altura do rodapé */
     top: auto !important;
     background: transparent !important;
     border: none !important;
@@ -98,35 +155,38 @@
     flex-direction: column;
     align-items: center;
     z-index: 2000;
+    width: auto !important;
   }
 
   .about-section {
-    left: 30px !important;
+    left: 35px !important;
   }
 
   .contact-section {
-    right: 30px !important;
+    right: 35px !important;
   }
 
   .about-icon, 
   .contact-icon {
-    width: 42px !important; 
-    height: 42px !important;
+    width: 45px !important; 
+    height: 45px !important;
     color: #fff;
+    /* Filtro para garantir visibilidade sobre o vídeo */
     filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.8));
+    margin-bottom: 5px;
   }
 
   .about-section span, 
   .contact-section span {
     color: #fff;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    margin-top: 5px;
-    text-shadow: 1px 1px 3px #000;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1);
   }
 
   .track {
     font-size: 3.5rem;
-    opacity: 0.05;
+    opacity: 0.03;
   }
 }
