@@ -73,18 +73,11 @@
 
 /* --- TRILHAS DE TEXTO (TRACKS) --- */
 .tracks-container {
-  position: absolute;
-  top: 0;           /* Começa no topo */
-  left: 0;
-  width: 100%;
-  height: 100%;     /* Ocupa a altura toda do Hero */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around; /* ESPALHA as linhas igualmente de cima a baixo */
-  padding: 10vh 0;  /* Dá um respiro no topo e na base */
-  z-index: 1;
-  pointer-events: none;
-}
+    /* Centraliza o bloco de palavras verticalmente no mobile */
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 5px; /* Diminui o espaço entre as linhas no celular */
+  }
 
   .track {
     /* Tamanho responsivo: 12vw faz a fonte se adaptar à largura do celular */
