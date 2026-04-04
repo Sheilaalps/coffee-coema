@@ -19,17 +19,10 @@ function Hero() {
 
   return (
     <section className="hero">
-     <video 
-    autoPlay 
-    loop 
-    muted 
-    playsInline 
-    className="hero-video"
-    preload="auto"
-  >
-    <source src="/video.mp4" type="video/mp4" />
-    Seu navegador não suporta vídeos.
-  </video>
+      <video autoPlay loop muted playsInline className="hero-video">
+        <source src="/video.mp4" type="video/mp4" />
+        
+      </video>
 
       <header className="hero-header-overlay">
         <div className="hero-brand-group">

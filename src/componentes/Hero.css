@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS (DESKTOP & GLOBAL)
+   1. CONTAINER HERO & VÍDEO
    ========================================================================== */
 .hero {
   position: relative;
@@ -8,53 +8,127 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: #000;
+  background-color: transparent; /* Permite ver o vídeo que está no fundo */
+}
+.hero-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  /* Margem zero para encostar na borda da 'caixa' que começa após a sidebar */
+  margin-left: 10px; 
 }
 
 .hero-video {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* O segredo da centralização: translate + cover */
-  transform: translate(-50%, -50%);
-  min-width: 100%; 
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  /* O segredo da responsividade do vídeo: */
   object-fit: cover; 
+  transform: translate(-50%, -50%);
   z-index: 0;
-  filter: brightness(0.5);
-}
-
-/* --- HEADER DESKTOP --- */
-.hero-header-overlay {
-  position: absolute;
-  top: 35px;
-  left: 80px; 
-  width: calc(100% - 80px); 
-  display: flex;
-  justify-content: flex-start; 
-  align-items: center;
-  padding: 0 20px; 
-  z-index: 1001;
+  filter: brightness(0.4);
 }
 
 .logo-coema {
-  width: 220px;
-  height: auto;
-  display: block;
+  width: 220px !important; /* Ajuste para o tamanho desejado */
+  height: auto !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  object-fit: contain;
 }
 
+/* ==========================================================================
+   2. HEADER (AJUSTADO PARA FOTO DA LOGO)
+   ========================================================================== */
+.hero-header-overlay {
+  position: absolute;
+  top: 35px;
+  /* Se sua sidebar tem 80px, o header começa no 80px */
+  left: 80px; 
+  /* Ocupa o restante da tela */
+  width: calc(100% - 80px); 
+  
+  display: flex;
+  /* Mudamos para flex-start para a logo colar na esquerda (perto da sidebar) */
+  justify-content: flex-start; 
+  align-items: center;
+  
+  /* O padding agora serve apenas como respiro interno */
+  padding: 0 20px; 
+  z-index: 1001;
+  box-sizing: border-box;
+}
+/* ==========================================================================
+   3. ELEMENTOS VISUAIS (TRACKS & MOCKUP)
+   ========================================================================== */
+/* Container das trilhas */
+.tracks-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaço entre as linhas */
+}
+
+.track {
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 7rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.03); /* Transparência do fundo */
+  white-space: nowrap;
+  text-transform: uppercase;
+  line-height: 0.9;
+  pointer-events: none;
+  transition: transform 0.1s linear; /* Suaviza o movimento do scroll */
+}
+
+/* --- O SEGREDO DO DESALINHAMENTO --- */
+
+/* Linhas 1, 3, 5 (Ímpares): Começam mais para a esquerda */
+.track:nth-child(odd) {
+  margin-left: -20%; 
+}
+
+/* Linhas 2, 4, 6 (Pares): Começam mais para a direita */
+.track:nth-child(even) {
+  margin-left: 15%;
+}
+
+/* Se quiser um desalinhamento ainda mais aleatório: */
+.track:nth-child(3n) {
+  margin-left: -5%;
+}
+
+.track:nth-child(4n) {
+  margin-left: 25%;
+}
+
+.cafe1 {
+  position: absolute;
+  bottom: 0;
+  right: 10%; /* Posiciona a embalagem à direita para equilibrar o peso visual */
+  width: 400px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   4. BARRA DE PESQUISA
+   ========================================================================== */
 .search-box {
   position: relative;
-  margin-left: auto; 
-  right: 40px;
-  display: flex;
-  align-items: center;
+  width: 280px;
+  z-index: 25;
 }
 
 .search-input {
-  width: 280px;
+  width: 100%;
   height: 42px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -62,124 +136,142 @@
   border-radius: 25px;
   padding: 0 20px 0 45px;
   color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .search-icon {
   position: absolute;
   left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
   color: #fff;
-  cursor: pointer;
+  opacity: 0.6;
+}
+.about-section {
+  top: 35px;
+  right: 20px; /* Posiciona o "Sobre" no canto direito */
+  z-index: 1001;
+}
+.contact-section {
+ 
+  top: 35px;
+  right: 20px; /* Posiciona o "Contato" no canto direito */
+  z-index: 1001;
 }
 
-/* --- TRILHAS DE TEXTO (TRACKS) --- */
-.tracks-container {
-    /* Centraliza o bloco de palavras verticalmente no mobile */
-    top: 50%;
-    transform: translateY(-50%);
-    gap: 5px; /* Diminui o espaço entre as linhas no celular */
-  }
+/* --- RESPONSIVIDADE --- */
 
+/* Telas Médias (Tablets) */
+@media (max-width: 1024px) {
+  .hero-header-overlay {
+    padding: 0 30px;
+    gap: 20px;
+  }
+  
   .track {
-    /* Tamanho responsivo: 12vw faz a fonte se adaptar à largura do celular */
-    font-size: 12vw !important; 
-    font-weight: 900;
-    line-height: 0.8;
-    color: rgba(255, 255, 255, 0.04); /* Deixa bem sutil para não brilhar mais que a logo */
-    letter-spacing: -2px; /* Deixa as letras mais "juntas" (estilo editorial) */
+    font-size: 6rem; /* Diminui o texto de fundo */
   }
-
-  /* Desalinhamento lateral para o efeito de scroll ficar mais dinâmico */
-  .track:nth-child(odd) {
-    margin-left: -10%;
-  }
-  .track:nth-child(even) {
-    margin-left: 5%;
-  }
+}
 
 /* ==========================================================================
-   2. RESPONSIVIDADE MOBILE (CELULARES)
+   RESPONSIVIDADE: CELULARES
    ========================================================================== */
 @media (max-width: 768px) {
   
-  .hero {
-    /* dvh evita que o vídeo pule quando a barra do navegador sobe/desce */
-    height: 100vh;
-    height: 100dvh; 
-  }
-
-  .hero-video {
-    /* Força o vídeo a ignorar a proporção horizontal e preencher a vertical */
-    height: 100dvh !important;
-    width: 100vw !important;
-    object-position: center; 
-  }
-
+  /* 1. HEADER TOPO: Logo e Lupa apenas */
   .hero-header-overlay {
-    left: 0 !important;
-    width: 100% !important;
-    top: 15px;
-    padding: 0 15px !important;
-    justify-content: space-between;
+    left: 0 !important;        /* Cola o container na borda da tela */
+    width: 100% !important;     /* Garante que ocupe a largura toda */
+    padding: 0 15px !important; /* Respiro lateral pequeno e igual nos dois lados */
+    top: 20px;
+    display: flex;
+    justify-content: space-between; /* Logo na esquerda, Lupa na direita */
+    align-items: center;
   }
 
-  .logo-coema {
-    width: 120px !important;
+ .logo-coema {
+    width: 130px !important;   /* Tamanho ideal para mobile */
+    margin-left: 0 !important;  /* Zera qualquer margem herdada da sidebar */
+    position: relative;
+    z-index: 1010;             /* Garante que fique acima de qualquer fundo */
+  }
+
+  /* 2. BUSCA: Só a Lupa */
+  .search-box {
+    width: auto; /* Deixa de ser largo */
+    margin: 0;
   }
 
   .search-input {
-    display: none; /* Esconde campo de texto */
+    display: none; /* Esconde o input de texto */
+  }
+
+  /* Se isSearchOpen for true, podemos mostrar o input (opcional) */
+  .search-container.active .search-input {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 200px;
   }
 
   .search-icon {
-    position: static;
-    width: 28px;
-    height: 28px;
+    position: static; /* Sai do absolute do desktop */
+    transform: none;
+    width: 24px;
+    opacity: 1;
+    cursor: pointer;
   }
 
-  /* BOTÕES FLUTUANTES (ABOUT & CONTACT) */
-  .about-section, 
-  .contact-section {
-    position: absolute !important;
-    bottom: 50px !important; /* Altura do rodapé */
-    top: auto !important;
-    background: transparent !important;
-    border: none !important;
-    display: flex !important;
-    flex-direction: column;
+  /* 3. RODAPÉ FIXO: About e Contact */
+  .about-section, .contact-section {
+    position: fixed;
+    bottom: 0;
+    top: auto; /* Anula o top do desktop */
+    right: auto; /* Anula o right do desktop */
+    height: 65px;
+    background: #1a110e; /* Cor da sidebar */
+    display: flex;
     align-items: center;
+    justify-content: center;
     z-index: 2000;
-    width: auto !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0;
   }
 
   .about-section {
-    left: 35px !important;
+    left: 0;
+    width: 50%; /* Metade esquerda */
   }
 
   .contact-section {
-    right: 35px !important;
+    right: 0;
+    width: 50%; /* Metade direita */
   }
 
-  .about-icon, 
-  .contact-icon {
-    width: 45px !important; 
-    height: 45px !important;
-    color: #fff;
-    /* Filtro para garantir visibilidade sobre o vídeo */
-    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.8));
-    margin-bottom: 5px;
+  .about-icon, .contact-icon {
+    width: 50px;
+    height: 50px;
   }
 
-  .about-section span, 
-  .contact-section span {
-    color: #fff;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,1);
-  }
+  /* 4. ELEMENTOS VISUAIS */
+
 
   .track {
     font-size: 3.5rem;
-    opacity: 0.03;
+  }
+
+  /* Evita que o conteúdo da página "suma" atrás da barra fixa */
+  .hero {
+    padding-bottom: 70px;
   }
 }
+
