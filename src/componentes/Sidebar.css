@@ -166,7 +166,6 @@
    MEDIA QUERIES PARA MOBILE
    ============================ */  
 @media (max-width: 768px) {
-  @media (max-width: 768px) {
   .sidebar {
     position: fixed !important;
     top: 0 !important;
@@ -293,5 +292,4 @@
   .mobile-burger {
     display: none;
   }
-}
 }
