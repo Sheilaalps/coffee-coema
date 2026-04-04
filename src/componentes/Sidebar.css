@@ -1,277 +1,129 @@
 /* Sidebar.css */
+:root {
+  --sb-width-desktop: 90px;
+  --sb-width-open: 260px;
+  --sb-width-mobile: 280px;
+}
+
 .sidebar {
   position: fixed;
-  left: 0;
   top: 0;
   height: 100vh;
-  width: 90px; /* Largura fechada */
-  
-  /* EFEITO VIDRO */
-  background: rgba(255, 255, 255, 0.05); 
+  background: rgba(15, 15, 15, 0.98);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Importante para o texto não vazar antes da hora */
-  z-index: 2000;
+  z-index: 9999; /* Garante que fique ACIMA da Hero */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-.sidebar.open {
-  width: 260px; /* Largura aberta */
+/* --- LOGICA DESKTOP --- */
+@media (min-width: 769px) {
+  .sidebar {
+    left: 0;
+    width: var(--sb-width-desktop);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .sidebar:hover {
+    width: var(--sb-width-open);
+  }
 }
 
-.sidebar-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 15px 25px; /* Ajuste o padding para o ícone ficar no lugar certo */
-  text-decoration: none;
-  color: white;
-  transition: all 0.3s ease;
+/* --- LOGICA MOBILE (FIM DA FAIXA PRETA) --- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: var(--sb-width-mobile);
+    left: calc(var(--sb-width-mobile) * -1);
+    border: none;
+    /* Adicione estas linhas: */
+    visibility: hidden; 
+    pointer-events: none;
+  }
+
+  .sidebar.active {
+    left: 0;
+    visibility: visible;
+    pointer-events: auto;
+    box-shadow: 10px 0 50px rgba(0, 0, 0, 0.8);
+  }
 }
 
-.sidebar:hover {
-  width: 180px !important; /* Aumente para 260px para o texto não cortar */
-}
-
-/* Centraliza o Logo no topo */
+/* --- ELEMENTOS INTERNOS --- */
 .sidebar-logo {
-  margin-bottom: 50px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-width: 80px;
 }
 
-.sidebar-logo img {
-  width: 80px;
-  height: auto;
-  margin: 10px;
-}
+.sidebar-logo img { width: 50px; height: auto; }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
+.menu { flex: 1; display: flex; flex-direction: column; gap: 10px; }
 
-/* O ITEM AGORA É UM FLEX CONTAINER HORIZONTAL */
 .item {
   display: flex;
-  align-items: center; /* Alinha ícone e texto verticalmente ao centro */
-  justify-content: flex-start; /* Alinha o conteúdo ao início (esquerda) */
-  height: 55px;
-  width: 100%;
+  align-items: center;
+  height: 60px;
+  color: white;
+  text-decoration: none;
   cursor: pointer;
-  transition: background 0.3s;
-  padding: 0; 
 }
 
-.item:hover {
-  background: rgba(255, 183, 0, 0.1);
-}
-
-/* ESSA DIV É O SEGREDO DO ALINHAMENTO DO ÍCONE */
 .icon-wrapper {
-  min-width: 80px; /* Mesma largura da barra fechada */
+  min-width: var(--sb-width-desktop);
   display: flex;
-  justify-content: center; /* Centraliza o ícone nos 80px */
+  justify-content: center;
   align-items: center;
 }
 
-.icon-sidebar {
-  width: 28px;
-  height: 28px;
-  filter: brightness(0) invert(1);
-  opacity: 0.7;
-}
+.icon-sidebar { width: 24px; height: 24px; filter: brightness(0) invert(1); }
 
-/* TEXTO: Só aparece quando o mouse está na barra */
 .item-name {
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
   white-space: nowrap;
-  
-  /* Escondido por padrão */
   opacity: 0;
-  transform: translateX(-10px); /* Leve efeito de deslize */
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-10px);
+  transition: opacity 0.3s, transform 0.3s;
 }
 
-.sidebar:hover .item-name {
+/* Mostra o texto no Hover (Desktop) ou quando Ativo (Mobile) */
+.sidebar:hover .item-name, .sidebar.active .item-name {
   opacity: 1;
   transform: translateX(0);
 }
 
-.item-logout {
-  margin-top: auto;
-  width: 100%;
+.item-logout { margin-top: auto; padding-bottom: 30px; }
+
+/* --- BOTÃO HAMBURGUER --- */
+.mobile-burger {
+  display: none; /* Escondido no Desktop */
 }
 
-.sidebar-item .icon {
-  min-width: 40px; /* Garante que o ícone ocupe sempre o mesmo espaço */
-  display: flex;
-  justify-content: center;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 15px 25px; /* Espaço interno para não encostar na borda */
-  color: white;
-  text-decoration: none;
-  transition: background 0.3s;
-  cursor: pointer;
-}
-
-/* O ÍCONE: Ele é a âncora fixa */
-.nav-icon {
-  min-width: 40px;  /* Garante que o ícone ocupe sempre o mesmo espaço */
-  display: flex;
-  justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;   /* Impede o ícone de ser "esmagado" */
-}
-
-/* O TEXTO: Ele aparece ao lado sem empurrar o ícone */
-.nav-text {
-  margin-left: 15px;
-  white-space: nowrap; /* Impede o texto de quebrar linha */
-  font-family: 'Lexend Tera', sans-serif;
-  font-size: 0.9rem;
-  
-  /* Controle de visibilidade suave */
-  opacity: 0; 
-  transition: opacity 0.3s ease;
-}
-
-/* Quando a sidebar estiver aberta (via classe no React) */
-.sidebar.open .nav-text {
-  opacity: 1;
-}
-.sidebar-footer {
-  margin-top: auto; /* Empurra o botão para o fim da sidebar */
-  padding-bottom: 20px;
-  width: 100%;
-}
-
-/* ============================
-   MEDIA QUERIES PARA MOBILE
-   ============================ */  
 @media (max-width: 768px) {
-  /* 1. RESET DA SIDEBAR (FECHADA) */
-  .sidebar {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    width: 0 !important; 
-    min-width: 0 !important;
-    background: transparent !important; 
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important; /* Adicionado para Safari */
-    border: none !important;
-    overflow: hidden !important; 
-    transform: translateX(-100%) !important;
-    transition: transform 0.4s ease, width 0s 0.4s !important;
-    z-index: 999999 !important;
-    
-    /* CORREÇÃO 1: Alinhamento base para os itens não sumirem */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-
-  /* 2. ABERTURA (O que faltava) */
-  .sidebar.active {
-    width: 280px !important; 
-    transform: translateX(0) !important;
-    transition: transform 0.4s ease, width 0s !important;
-    
-    /* CORREÇÃO 2: Devolver o efeito de vidro aqui! */
-    background: rgba(15, 15, 15, 0.8) !important; 
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-    padding-top: 80px !important; /* Espaço para o botão não cobrir a logo */
-  }
-
-  /* 3. LOGO (MAIOR) */
-  .sidebar-logo {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin-bottom: 40px !important;
-  }
-
-  .sidebar-logo img {
-    width: 140px !important; /* CORREÇÃO 3: Aumentado conforme solicitado */
-    height: auto !important;
-    filter: none !important;
-    display: block !important;
-  }
-
-  /* 4. MENU E ALINHAMENTO */
-  .menu {
-    width: 100% !important; /* Mudado de min-width para width */
-    padding-left: 20px !important; /* Alinhamento lateral */
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-
-  /* CORREÇÃO 4: Garantir que o texto apareça */
-  .item-name {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important; /* Garante que o span exista no mobile */
-    transform: none !important;
-    margin-left: 12px !important;
-    font-size: 18px !important;
-    color: #ffffff !important;
-    font-family: 'Lexend Tera', sans-serif !important;
-    white-space: nowrap !important;
-  }
-
-  /* ... restante do código (icon-wrapper, mobile-burger, logout) está correto ... */
-  
-  .icon-wrapper {
-    width: 45px !important;
-    min-width: 45px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  .icon-sidebar {
-    width: 26px !important;
-    height: 26px !important;
-    filter: brightness(0) invert(1) !important;
-  }
-
   .mobile-burger {
-    display: flex !important;
-    position: fixed !important;
+    display: flex;
+    position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 1000001 !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(10px) !important;
-    border-radius: 10px !important;
+    z-index: 10000; /* ACIMA DA SIDEBAR */
     width: 45px;
     height: 45px;
-    align-items: center;
-    justify-content: center;
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
     color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9998; /* Abaixo da sidebar, acima da hero */
   }
 }

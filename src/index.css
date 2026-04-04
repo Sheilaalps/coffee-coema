@@ -21,14 +21,26 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #000; /* Garante que se sobrar 1px, seja preto */
+}
+
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  /* A TRAVA PARA A BARRA DE ROLAGEM */
-  overflow-x: hidden; 
+  padding: 0;
   width: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+  position: relative;
 }
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 
 #root {
   width: 100%;
