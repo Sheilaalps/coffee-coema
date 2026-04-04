@@ -1,93 +1,134 @@
+/* 1. ESTRUTURA 3D */
 .card {
-  width: 220px;          /* Largura reduzida */
-  height: 300px;         /* Altura proporcional */
+  width: 280px;  /* Tamanho ideal para caber o texto */
+  height: 380px;
   perspective: 1000px;
-  margin: 10px;          /* Espaço entre os cards */
+  margin: 15px;
 }
 
-.card-front img {
-  width: 100%;
-  height: 140px;         /* Imagem menor para sobrar espaço pro texto */
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.card-front h3 {
-  font-size: 1.1rem;     /* Título menor */
-  margin-top: 15px;
-}
-
-.card-back p {
-  font-size: 0.9rem;     /* Texto interno menor */
-  padding: 10px;
-}
-
-/* O tamanho do card - Agora menor */
-.card {
-  background-color: transparent;
-  width: 200px;         /* Largura menor como você pediu */
-  height: 280px;        /* Altura proporcional */
-  perspective: 1000px;  /* Cria o efeito de profundidade 3D */
-}
-
-/* O container que realmente gira */
 .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
   cursor: pointer;
 }
 
-/* Gira o card quando passa o mouse */
 .card:hover .card-inner {
   transform: rotateY(180deg);
 }
 
-/* Estilo comum para as duas faces */
+/* 2. FACES DO CARD (REGRAS GERAIS) */
 .card-front, .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden; /* Esconde a face de trás ao girar */
-  border-radius: 15px;
+  backface-visibility: hidden; /* Oculta a face de trás */
+  border-radius: 36px;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  background: rgba(217, 217, 217, 0.113); /* Cor do Figma */
+}
+
+/* 3. DESIGN DA FRENTE */
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 0px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-/* Frente do Card */
-.card-front {
-  background-color: #2a1a15;
-  color: white;
-}
-
-.card-front img {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  padding: 30px 20px;
 }
 
 .card-front h3 {
-  font-size: 1rem;
-  margin: 0;
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 1.1rem;
 }
 
-/* Verso do Card (Aparece ao girar) */
+.card-front img {
+  height: 200px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+/* 4. DESIGN DO VERSO (EFEITO VIDRO) */
 .card-back {
-  background-color: #4b2c20;
-  color: #f5f5f5;
-  transform: rotateY(180deg); /* Já começa invertido */
+  transform: rotateY(180deg); /* Começa virado */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
 }
 
-.card-back p {
-  font-size: 0.85rem;
-  line-height: 1.4;
+.info-verso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Lexend Exa', sans-serif;
+}
+
+.info-verso h4 { font-size: 0.75rem; font-weight: 700; margin: 0; }
+.perfil-texto { font-size: 0.85rem; line-height: 1.4; }
+.detalhes-texto { font-size: 0.8rem; }
+.especificacao-texto { font-size: 0.7rem; opacity: 0.7; }
+/* Container da Intensidade */
+.intensidade-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+/* Bolinhas de Intensidade */
+.dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%; /* Faz ficar redondo */
+  border: 1px solid;   /* A cor vem do style inline do JSX */
+  display: inline-block;
+}
+
+.dot.filled {
+  /* background-color definida no JSX */
+}
+
+.dot.empty {
+  background-color: transparent;
+  opacity: 0.4;
+}
+
+/* Botão Estilo Pílula */
+.btn-compre {
+  background-color: #2a1a15;
+  color: white;
+  border: none;
+  border-radius: 50px; /* Formato pílula */
+  padding: 12px 30px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.btn-compre:hover {
+  background-color: #3d261e;
+  transform: scale(1.05);
 }

@@ -14,7 +14,7 @@ function Sidebar() {
       {/* Sidebar com classe dinâmica 'active' */}
       <div className={`sidebar ${isOpen ? "active" : ""}`}>
         <div className="sidebar-logo">
-          <img src="/logo.png" alt="Logo" />
+          <img src="/co.svg" alt="Logo" />
         </div>
 
         <div className="menu">

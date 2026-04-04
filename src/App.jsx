@@ -6,27 +6,41 @@ import Carousel from "./componentes/Carrousel";
 import Banner from "./componentes/Banner";
 import SmoothScroll from "./componentes/SmoothScroll";
 
+
 // Importando assets
-import imgExpresso from "./assets/expresso.png";
-import imgCappuccino from "./assets/cappuccino.png";
-import imgLatte from "./assets/latte.png";
+import imgLeve from "./assets/leve.svg";
+import imgModerado from "./assets/moderado.svg";
+import imgExpress from "./assets/express.svg";
+import "@fontsource/lexend-exa/400.css";
 
 function App() {
   const produtos = [
     {
-      nome: "Café Expresso",
-      descricao: "Forte e encorpado",
-      imagem: imgExpresso,
+      nome: "Torra Leve",
+      cor: "#8DAF5B", // Verde Oliva
+      perfil: "Frutas Cítricas, Mel e Toque Floral",
+      detalhes: "Corpo: Leve | Torra: Clara",
+      especificacao: "100% ARÁBICA EM GRÃOS",
+      intensidade: 3,
+      imagem: imgLeve,
+    },  
+    {
+      nome: "Torra Moderada",
+      cor: "#B98B2B", // Dourado/Amarelo
+      perfil: "Chocolate ao Leite e Caramelo",
+      detalhes: "Corpo: Médio | Torra: Média",
+      especificacao: "100% ARÁBICA EM GRÃOS",
+      intensidade: 4,
+      imagem: imgModerado,
     },
     {
-      nome: "Cappuccino",
-      descricao: "Cremoso e suave",
-      imagem: imgCappuccino,
-    },
-    {
-      nome: "Latte",
-      descricao: "Suave e equilibrado, com leite cremoso e arte na superfície.",
-      imagem: imgLatte,
+      nome: "Torra Express",
+      cor: "#648D5E", // Grafite/Preto
+      perfil: "Cacau, Nozes e Açúcar Mascavo",
+      detalhes: "Corpo: Encorpado | Torra: Média-Escura",
+      especificacao: "100% ARÁBICA EM GRÃOS",
+      intensidade: 5,
+      imagem: imgExpress,
     },
   ];
 
