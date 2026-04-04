@@ -21,13 +21,14 @@
 
 .hero-video {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Faz o vídeo preencher a tela do celular (vertical) */
+  transform: translate(-50%, -50%); /* Centraliza o corte do vídeo */
   z-index: 0;
-  filter: brightness(0.5); /* Escurece o vídeo para o texto branco destacar */
+  filter: brightness(0.4);
 }
 
 .logo-coema {
@@ -180,39 +181,113 @@
   }
 }
 
-/* Telas Pequenas (Celulares) */
+/* ==========================================================================
+   RESPONSIVIDADE: CELULARES
+   ========================================================================== */
 @media (max-width: 768px) {
+  
+  /* 1. HEADER TOPO: Logo e Lupa apenas */
+ @media (max-width: 768px) {
+
   .hero-header-overlay {
-    /* REMOVE o recuo de 120px para a logo não sumir na direita */
-    padding: 0 20px !important; 
-    flex-direction: row; /* Mantém logo e busca na mesma linha se couber, ou use column */
-    justify-content: space-between;
+    left: 0 !important; /* Remove o recuo da sidebar do desktop */
+    width: 100% !important;
     top: 15px;
-    left: 0;
+    padding: 0 20px !important;
+    display: flex;
+    justify-content: space-between; /* Logo na esquerda, Lupa na direita */
+    align-items: center;
   }
 
+  .logo-coema {
+    width: 130px !important; /* Tamanho ajustado para não vazar da tela */
+    height: auto !important;
+    margin-left: 0 !important; /* Garante que não haja margem empurrando */
+    display: block !important;
+  }
+
+  /* Garante que o container da logo não tenha largura fixa que a expulse */
+  .hero-brand-group {
+    width: auto;
+    margin: 0;
+  }
+}
+
+  /* 2. BUSCA: Só a Lupa */
   .search-box {
-    width: 90%; /* Busca ocupa quase toda a largura no celular */
-    max-width: 320px;
+    width: auto; /* Deixa de ser largo */
+    margin: 0;
   }
 
-  .hero-title {
-    font-size: 0.9rem; /* Título menor para não quebrar linha */
-    text-align: center;
+  .search-input {
+    display: none; /* Esconde o input de texto */
   }
 
+  /* Se isSearchOpen for true, podemos mostrar o input (opcional) */
+  .search-container.active .search-input {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 200px;
+  }
+
+  .search-icon {
+    position: static; /* Sai do absolute do desktop */
+    transform: none;
+    width: 24px;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  /* 3. RODAPÉ FIXO: About e Contact */
+  .about-section, .contact-section {
+    position: fixed;
+    bottom: 0;
+    top: auto; /* Anula o top do desktop */
+    right: auto; /* Anula o right do desktop */
+    height: 65px;
+    background: #1a110e; /* Cor da sidebar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0;
+  }
+
+  .about-section {
+    left: 0;
+    width: 50%; /* Metade esquerda */
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-section {
+    right: 0;
+    width: 50%; /* Metade direita */
+  }
+
+  .about-icon, .contact-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* 4. ELEMENTOS VISUAIS */
   .cafe1 {
-    width: 220px; /* Diminui a imagem do café no mobile */
+    width: 240px;
+    bottom: 70px; /* Sobe para não ficar atrás do menu inferior */
     left: 50%;
-    transform: translateX(-50%); /* Centraliza o café */
+    transform: translateX(-50%);
+    right: auto;
   }
 
   .track {
-    font-size: 4rem;
-    line-height: 1.2;
+    font-size: 3.5rem;
   }
-.logo-coema {
-  width: 35px; /* Diminui a logo no mobile */
+
+  /* Evita que o conteúdo da página "suma" atrás da barra fixa */
+  .hero {
+    padding-bottom: 70px;
+  }
 }
   
-}
