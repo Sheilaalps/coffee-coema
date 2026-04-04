@@ -172,124 +172,109 @@
     left: 0 !important;
     height: 100vh !important;
     height: 100dvh !important;
-    
-    /* Força a largura correta para caber os textos */
-    width: 280px !important; 
-    
-    /* Estado inicial: escondido */
+    width: 280px !important;
     transform: translateX(-100%) !important;
     
-    background-color: #0d0d0d !important;
-    backdrop-filter: none !important; /* Melhora performance no mobile */
+    /* VOLTANDO O FLUID GLASS */
+    background: rgba(255, 255, 255, 0.05) !important; 
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    
     z-index: 999999 !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important; /* Alinha itens à esquerda */
-    padding: 80px 0 40px 0 !important; /* Espaço para o botão hambúrguer no topo */
+    align-items: flex-start !important;
+    padding: 100px 0 40px 0 !important; /* Aumentei o topo para a logo não sumir */
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    border: none !important;
   }
+
+  /* LOGO: Ajustando para ficar grande e centralizada */
   .sidebar-logo {
-    min-width: 100% !important;
-    margin-bottom: 30px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 40px !important;
   }
 
   .sidebar-logo img {
-    width: 60px !important;
-  }
-
-
-  /* 4. O CLIQUE: Quando o hambúrguer é clicado, ele adiciona essa classe */
- .sidebar.active {
-    transform: translateX(0) !important;
-    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.9);
-  }
-
-  .sidebar.active .item-name,
-  .sidebar.active .nav-text {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
+    width: 120px !important; /* TAMANHO DA LOGO */
+    height: auto !important;
+    filter: none !important; /* Garante que a logo mantenha a cor original */
     display: block !important;
-    visibility: visible !important;
-    color: white !important;
   }
 
-  .item, .sidebar-item, .nav-item {
+  /* MENU E ALINHAMENTO DAS PALAVRAS */
+  .menu {
     width: 100% !important;
-    height: 60px !important;
+    padding-left: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+
+  .item {
     display: flex !important;
     align-items: center !important;
-    padding-left: 20px !important;
-    opacity: 1 !important;
+    width: 100% !important;
+    height: 50px !important;
+    gap: 0 !important; 
   }
 
-  .icon-wrapper, .nav-icon {
-    min-width: 50px !important;
+  .icon-wrapper {
+    width: 45px !important;
+    min-width: 45px !important;
     display: flex !important;
     justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .icon-sidebar {
+    width: 26px !important;
+    height: 26px !important;
+    filter: brightness(0) invert(1) !important;
+    margin: 0 !important; /* Remove margens que bagunçam */
+  }
+
+  .item-name {
     opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important; /* Mata o movimento do desktop */
+    margin-left: 12px !important; /* Espaço exato entre ícone e texto */
+    font-size: 18px !important;
+    color: #ffffff !important;
+    font-family: 'Lexend Tera', sans-serif !important;
+    white-space: nowrap !important;
   }
 
-  /* Ajuste dos ícones internos para já aparecerem grandes */
-  .sidebar-icon, .sidebar img {
-    width: 32px !important;
-    height: 32px !important;
-    margin-bottom: 45px !important;
-    opacity: 1 !important; /* Garante que não fiquem apagados */
-    display: block !important;
+  /* ABERTURA */
+  .sidebar.active {
+    transform: translateX(0) !important;
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.5);
   }
 
-  /* 3. Estilo do Botão Hambúrguer */
- .mobile-burger {
+  /* BOTÃO HAMBÚRGUER (X) */
+  .mobile-burger {
     display: flex !important;
     position: fixed !important;
     top: 20px;
     left: 20px;
-    z-index: 1000001 !important; /* Sempre acima da sidebar */
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white;
-    font-size: 24px;
-    padding: 10px;
-    border-radius: 8px;
+    z-index: 1000001 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 10px !important;
     width: 45px;
     height: 45px;
     align-items: center;
     justify-content: center;
+    color: white;
   }
 
-  /* 4. LIBERAR ESPAÇO PARA O BANNER (FIM DO CORTE DE TEXTO) */
-  .hero-header-overlay, 
-  .banner-section, 
-  .reveal-content,
-  .sticky-wrapper {
-    width: 100% !important;
-    margin-left: 0 !important;
-    padding: 0 20px !important;
-  }
-
-  .banner-title {
-    font-size: 1.8rem !important; /* Reduz para caber no celular */
-    white-space: normal !important; /* Permite quebrar linha */
-    text-align: center;
-  }
-
-  /* Escurece o fundo quando o menu abre */
-  .sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    z-index: 9998;
-  }
-}
-
-/* Esconde o botão no Desktop */
-@media (min-width: 769px) {
-  .mobile-burger {
-    display: none;
+  .item-logout {
+    margin-top: auto !important;
+    padding-left: 20px !important;
+    padding-bottom: 30px !important;
   }
 }
