@@ -109,14 +109,7 @@
   margin-left: 25%;
 }
 
-.cafe1 {
-  position: absolute;
-  bottom: 0;
-  right: 10%; /* Posiciona a embalagem à direita para equilibrar o peso visual */
-  width: 400px;
-  z-index: 15;
-  pointer-events: none;
-}
+
 
 /* ==========================================================================
    4. BARRA DE PESQUISA
@@ -197,6 +190,14 @@
     align-items: center;
   }
 
+  .menu-icon-mobile {
+    display: block !important;
+    width: 28px !important;
+    height: 28px !important;
+    z-index: 1010;
+    cursor: pointer;
+  }
+
  .logo-coema {
     position: absolute !important;
     left: 50% !important;
@@ -240,12 +241,10 @@
     top: auto; /* Anula o top do desktop */
     right: auto; /* Anula o right do desktop */
     height: 65px;
-    background: #1a110e; /* Cor da sidebar */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2000;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin: 0;
   }
 
