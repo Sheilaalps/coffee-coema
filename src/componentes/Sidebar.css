@@ -166,28 +166,45 @@
    MEDIA QUERIES PARA MOBILE
    ============================ */  
 @media (max-width: 768px) {
+  /* 1. RESET DA SIDEBAR (FECHADA) */
   .sidebar {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     height: 100vh !important;
     height: 100dvh !important;
-    
-    /* MUDANÇA AQUI: Começa com largura zero para não criar a barra preta */
     width: 0 !important; 
-    overflow: hidden !important; /* Garante que nada vaze quando fechada */
+    min-width: 0 !important;
+    background: transparent !important; 
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important; /* Adicionado para Safari */
+    border: none !important;
+    overflow: hidden !important; 
+    transform: translateX(-100%) !important;
+    transition: transform 0.4s ease, width 0s 0.4s !important;
+    z-index: 999999 !important;
     
-    /* O fundo só aparece quando abrir, então usamos a cor do vidro aqui */
-    background: rgba(15, 15, 15, 0.75) !important;
+    /* CORREÇÃO 1: Alinhamento base para os itens não sumirem */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* 2. ABERTURA (O que faltava) */
+  .sidebar.active {
+    width: 280px !important; 
+    transform: translateX(0) !important;
+    transition: transform 0.4s ease, width 0s !important;
+    
+    /* CORREÇÃO 2: Devolver o efeito de vidro aqui! */
+    background: rgba(15, 15, 15, 0.8) !important; 
     backdrop-filter: blur(20px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    
-    transform: translateX(-100%) !important;
-    transition: transform 0.4s ease, width 0s 0.4s !important; /* Width volta a ser 0 após fechar */
-    z-index: 999999 !important;
-    border: none !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-top: 80px !important; /* Espaço para o botão não cobrir a logo */
   }
-  /* LOGO: Ajustando para ficar grande e centralizada */
+
+  /* 3. LOGO (MAIOR) */
   .sidebar-logo {
     width: 100% !important;
     display: flex !important;
@@ -197,25 +214,36 @@
   }
 
   .sidebar-logo img {
-    width: 120px !important; /* TAMANHO DA LOGO */
+    width: 140px !important; /* CORREÇÃO 3: Aumentado conforme solicitado */
     height: auto !important;
-    filter: none !important; /* Garante que a logo mantenha a cor original */
+    filter: none !important;
     display: block !important;
   }
 
-  /* MENU E ALINHAMENTO DAS PALAVRAS */
+  /* 4. MENU E ALINHAMENTO */
   .menu {
-    min-width: 280px !important;
-  }
-
-  .item {
+    width: 100% !important; /* Mudado de min-width para width */
+    padding-left: 20px !important; /* Alinhamento lateral */
     display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-    height: 50px !important;
-    gap: 0 !important; 
+    flex-direction: column !important;
+    gap: 10px !important;
   }
 
+  /* CORREÇÃO 4: Garantir que o texto apareça */
+  .item-name {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important; /* Garante que o span exista no mobile */
+    transform: none !important;
+    margin-left: 12px !important;
+    font-size: 18px !important;
+    color: #ffffff !important;
+    font-family: 'Lexend Tera', sans-serif !important;
+    white-space: nowrap !important;
+  }
+
+  /* ... restante do código (icon-wrapper, mobile-burger, logout) está correto ... */
+  
   .icon-wrapper {
     width: 45px !important;
     min-width: 45px !important;
@@ -228,28 +256,8 @@
     width: 26px !important;
     height: 26px !important;
     filter: brightness(0) invert(1) !important;
-    margin: 0 !important; /* Remove margens que bagunçam */
   }
 
-  .item-name {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important; /* Mata o movimento do desktop */
-    margin-left: 12px !important; /* Espaço exato entre ícone e texto */
-    font-size: 18px !important;
-    color: #ffffff !important;
-    font-family: 'Lexend Tera', sans-serif !important;
-    white-space: nowrap !important;
-  }
-
-  /* ABERTURA */
-  .sidebar.active {
-    width: 280px !important; 
-    transform: translateX(0) !important;
-    transition: transform 0.4s ease, width 0s !important; /* Width fica 280px instantaneamente ao abrir */
-  }
-
-  /* BOTÃO HAMBÚRGUER (X) */
   .mobile-burger {
     display: flex !important;
     position: fixed !important;
@@ -265,11 +273,5 @@
     align-items: center;
     justify-content: center;
     color: white;
-  }
-
-  .item-logout {
-    margin-top: auto !important;
-    padding-left: 20px !important;
-    padding-bottom: 30px !important;
   }
 }
