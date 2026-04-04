@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"; // Adicionado useState
 import "./Hero.css";
-import cafeImg from "../assets/cafe1.png"; 
 
 function Hero() {
   const [isSearchOpen, setIsSearchOpen] = useState(false); 
@@ -59,8 +58,7 @@ function Hero() {
         ))}
       </div>
 
-      <img src={cafeImg} alt="Café" className="cafe1" />
-      <img src={cafeImg} alt="Café" className="cafe1" />
+  
     </section>
   );
 }
