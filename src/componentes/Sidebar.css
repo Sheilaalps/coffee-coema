@@ -172,23 +172,21 @@
     left: 0 !important;
     height: 100vh !important;
     height: 100dvh !important;
-    width: 280px !important;
-    transform: translateX(-100%) !important;
     
-    /* VOLTANDO O FLUID GLASS */
-    background: rgba(255, 255, 255, 0.05) !important; 
+    /* MUDANÇA AQUI: Começa com largura zero para não criar a barra preta */
+    width: 0 !important; 
+    overflow: hidden !important; /* Garante que nada vaze quando fechada */
+    
+    /* O fundo só aparece quando abrir, então usamos a cor do vidro aqui */
+    background: rgba(15, 15, 15, 0.75) !important;
     backdrop-filter: blur(20px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
     
+    transform: translateX(-100%) !important;
+    transition: transform 0.4s ease, width 0s 0.4s !important; /* Width volta a ser 0 após fechar */
     z-index: 999999 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 100px 0 40px 0 !important; /* Aumentei o topo para a logo não sumir */
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: none !important;
   }
-
   /* LOGO: Ajustando para ficar grande e centralizada */
   .sidebar-logo {
     width: 100% !important;
@@ -207,11 +205,7 @@
 
   /* MENU E ALINHAMENTO DAS PALAVRAS */
   .menu {
-    width: 100% !important;
-    padding-left: 20px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 15px !important;
+    min-width: 280px !important;
   }
 
   .item {
@@ -250,8 +244,9 @@
 
   /* ABERTURA */
   .sidebar.active {
+    width: 280px !important; 
     transform: translateX(0) !important;
-    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, width 0s !important; /* Width fica 280px instantaneamente ao abrir */
   }
 
   /* BOTÃO HAMBÚRGUER (X) */
