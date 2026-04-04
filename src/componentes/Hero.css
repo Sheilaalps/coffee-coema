@@ -198,10 +198,12 @@
   }
 
  .logo-coema {
-    width: 130px !important;   /* Tamanho ideal para mobile */
-    margin-left: 0 !important;  /* Zera qualquer margem herdada da sidebar */
-    position: relative;
-    z-index: 1010;             /* Garante que fique acima de qualquer fundo */
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important; /* Move exatamente para o centro do eixo X */
+    width: 110px !important; /* Tamanho ajustado para não bater nos ícones */
+    height: auto !important;
+    margin: 0 !important;
   }
 
   /* 2. BUSCA: Só a Lupa */
