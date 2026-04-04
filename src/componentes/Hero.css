@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. CONTAINER HERO & VÍDEO
-   ========================================================================== */
+/* --- CONFIGURAÇÕES GERAIS --- */
 .hero {
   position: relative;
   height: 100vh;
@@ -8,15 +6,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: transparent; /* Permite ver o vídeo que está no fundo */
-}
-.hero-brand-group {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-shrink: 0;
-  /* Margem zero para encostar na borda da 'caixa' que começa após a sidebar */
-  margin-left: 10px; 
+  background-color: #000;
 }
 
 .hero-video {
@@ -25,109 +15,38 @@
   left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Faz o vídeo preencher a tela do celular (vertical) */
-  transform: translate(-50%, -50%); /* Centraliza o corte do vídeo */
+  object-fit: cover;
+  transform: translate(-50%, -50%);
   z-index: 0;
-  filter: brightness(0.4);
+  filter: brightness(0.5);
 }
 
-.logo-coema {
-  width: 220px !important; /* Ajuste para o tamanho desejado */
-  height: auto !important;
-  display: block !important;
-  flex-shrink: 0 !important;
-  object-fit: contain;
-}
-
-/* ==========================================================================
-   2. HEADER (AJUSTADO PARA FOTO DA LOGO)
-   ========================================================================== */
+/* --- HEADER DESKTOP --- */
 .hero-header-overlay {
   position: absolute;
   top: 35px;
-  /* Se sua sidebar tem 80px, o header começa no 80px */
   left: 80px; 
-  /* Ocupa o restante da tela */
   width: calc(100% - 80px); 
-  
   display: flex;
-  /* Mudamos para flex-start para a logo colar na esquerda (perto da sidebar) */
   justify-content: flex-start; 
   align-items: center;
-  
-  /* O padding agora serve apenas como respiro interno */
   padding: 0 20px; 
   z-index: 1001;
-  box-sizing: border-box;
-}
-/* ==========================================================================
-   3. ELEMENTOS VISUAIS (TRACKS & MOCKUP)
-   ========================================================================== */
-/* Container das trilhas */
-.tracks-container {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Espaço entre as linhas */
 }
 
-.track {
-  font-family: 'Lexend Tera', sans-serif;
-  font-size: 7rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.03); /* Transparência do fundo */
-  white-space: nowrap;
-  text-transform: uppercase;
-  line-height: 0.9;
-  pointer-events: none;
-  transition: transform 0.1s linear; /* Suaviza o movimento do scroll */
+.logo-coema {
+  width: 220px;
+  height: auto;
 }
 
-/* --- O SEGREDO DO DESALINHAMENTO --- */
-
-/* Linhas 1, 3, 5 (Ímpares): Começam mais para a esquerda */
-.track:nth-child(odd) {
-  margin-left: -20%; 
-}
-
-/* Linhas 2, 4, 6 (Pares): Começam mais para a direita */
-.track:nth-child(even) {
-  margin-left: 15%;
-}
-
-/* Se quiser um desalinhamento ainda mais aleatório: */
-.track:nth-child(3n) {
-  margin-left: -5%;
-}
-
-.track:nth-child(4n) {
-  margin-left: 25%;
-}
-
-.cafe1 {
-  position: absolute;
-  bottom: 0;
-  right: 10%; /* Posiciona a embalagem à direita para equilibrar o peso visual */
-  width: 400px;
-  z-index: 15;
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   4. BARRA DE PESQUISA
-   ========================================================================== */
 .search-box {
   position: relative;
-  width: 280px;
-  z-index: 25;
+  margin-left: auto; /* Empurra a busca para a direita no desktop */
+  right: 40px;
 }
 
 .search-input {
-  width: 100%;
+  width: 280px;
   height: 42px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -135,159 +54,79 @@
   border-radius: 25px;
   padding: 0 20px 0 45px;
   color: #fff;
-  font-size: 0.9rem;
-  outline: none;
-  transition: all 0.3s ease;
 }
 
-.search-input:focus {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  color: #fff;
-  opacity: 0.6;
-}
-.about-section {
- 
-  top: 35px;
-  right: 20px; /* Posiciona o "Sobre" no canto direito */
-  z-index: 1001;
-}
-.contact-section {
- 
-  top: 35px;
-  right: 20px; /* Posiciona o "Contato" no canto direito */
-  z-index: 1001;
-}
-
-/* --- RESPONSIVIDADE --- */
-
-/* Telas Médias (Tablets) */
-@media (max-width: 1024px) {
-  .hero-header-overlay {
-    padding: 0 30px;
-    gap: 20px;
-  }
-  
-  .track {
-    font-size: 6rem; /* Diminui o texto de fundo */
-  }
-}
-
-/* ==========================================================================
-   RESPONSIVIDADE: CELULARES
-   ========================================================================== */
+/* --- RESPONSIVIDADE MOBILE (768px) --- */
 @media (max-width: 768px) {
   
-  /* 1. HEADER TOPO: Logo e Lupa apenas */
- @media (max-width: 768px) {
+  .hero-video {
+    height: 100vh !important;
+    width: 100vw !important;
+  }
 
   .hero-header-overlay {
-    left: 0 !important; /* Remove o recuo da sidebar do desktop */
+    left: 0 !important;
     width: 100% !important;
     top: 15px;
-    padding: 0 20px !important;
-    display: flex;
-    justify-content: space-between; /* Logo na esquerda, Lupa na direita */
-    align-items: center;
+    padding: 0 15px !important;
+    justify-content: space-between;
   }
 
   .logo-coema {
-    width: 130px !important; /* Tamanho ajustado para não vazar da tela */
-    height: auto !important;
-    margin-left: 0 !important; /* Garante que não haja margem empurrando */
-    display: block !important;
-  }
-
-  /* Garante que o container da logo não tenha largura fixa que a expulse */
-  .hero-brand-group {
-    width: auto;
-    margin: 0;
-  }
-}
-
-  /* 2. BUSCA: Só a Lupa */
-  .search-box {
-    width: auto; /* Deixa de ser largo */
-    margin: 0;
+    width: 120px !important;
   }
 
   .search-input {
-    display: none; /* Esconde o input de texto */
-  }
-
-  /* Se isSearchOpen for true, podemos mostrar o input (opcional) */
-  .search-container.active .search-input {
-    display: block;
-    position: absolute;
-    top: 50px;
-    right: 0;
-    width: 200px;
+    display: none; /* Esconde campo de texto no mobile */
   }
 
   .search-icon {
-    position: static; /* Sai do absolute do desktop */
-    transform: none;
-    width: 24px;
-    opacity: 1;
-    cursor: pointer;
+    color: #fff;
+    width: 26px;
+    height: 26px;
   }
 
-  /* 3. RODAPÉ FIXO: About e Contact */
-  .about-section, .contact-section {
-    position: fixed;
-    bottom: 0;
-    top: auto; /* Anula o top do desktop */
-    right: auto; /* Anula o right do desktop */
-    height: 65px;
-    background: #1a110e; /* Cor da sidebar */
-    display: flex;
+  /* BOTÕES FLUTUANTES SEM RETÂNGULO */
+  .about-section, 
+  .contact-section {
+    position: absolute !important;
+    bottom: 40px !important;
+    top: auto !important;
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     z-index: 2000;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 0;
   }
 
   .about-section {
-    left: 0;
-    width: 50%; /* Metade esquerda */
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    left: 30px !important;
   }
 
   .contact-section {
-    right: 0;
-    width: 50%; /* Metade direita */
+    right: 30px !important;
   }
 
-  .about-icon, .contact-icon {
-    width: 28px;
-    height: 28px;
+  .about-icon, 
+  .contact-icon {
+    width: 42px !important; 
+    height: 42px !important;
+    color: #fff;
+    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.8));
   }
 
-  /* 4. ELEMENTOS VISUAIS */
-  .cafe1 {
-    width: 240px;
-    bottom: 70px; /* Sobe para não ficar atrás do menu inferior */
-    left: 50%;
-    transform: translateX(-50%);
-    right: auto;
+  .about-section span, 
+  .contact-section span {
+    color: #fff;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    text-shadow: 1px 1px 3px #000;
   }
 
   .track {
     font-size: 3.5rem;
-  }
-
-  /* Evita que o conteúdo da página "suma" atrás da barra fixa */
-  .hero {
-    padding-bottom: 70px;
+    opacity: 0.05;
   }
 }
-  
