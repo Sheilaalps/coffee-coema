@@ -1,157 +1,50 @@
-/* Hero.css - Versão Final Corrigida */
-
-/* 1. CONTAINER HERO & VÍDEO */
+/* Hero.css */
 .hero {
-  position: relative;
-  height: 100vh;
-  width: 100%; /* Use 100% em vez de 100vw */
-  left: 0;
-  overflow: hidden;
-  background-color: #000;
+  position: relative; /* 👈 ESSENCIAL: O Hero ocupa o seu lugar e deixa o resto vir depois */
+  width: 100vw;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Mantém o vídeo preso dentro dele */
+  background: #000;
+  z-index: 1;
 }
-
-
 
 .hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  filter: brightness(0.4);
-}
-
-.logo-coema {
-  width: 220px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-/* 2. HEADER OVERLAY */
-.hero-header-overlay {
-  position: absolute;
-  top: 35px;
+  position: absolute; /* O vídeo fica preso dentro do .hero que é relative */
+  top: 0;
   left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px; 
-  z-index: 1001;
-  box-sizing: border-box;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none; /* 👈 Garante que o vídeo não intercepte o scroll do mouse */
 }
 
-@media (min-width: 769px) {
-  .hero-header-overlay {
-    padding-left: 110px; /* Recuo para a sidebar desktop */
-  }
-}
-
-/* 3. ELEMENTOS VISUAIS (TRACKS) */
 .tracks-container {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 0;
   width: 100%;
+  transform: translateY(-50%);
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  pointer-events: none; /* Garante que o texto não atrapalhe cliques */
 }
 
 .track {
   font-family: 'Lexend Tera', sans-serif;
-  font-size: 7rem;
+  font-size: 8rem; /* Tamanho gigante conforme seu print */
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.03); /* Branco quase invisível */
   white-space: nowrap;
-  text-transform: uppercase;
   line-height: 0.9;
-  pointer-events: none;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-/* Efeito de desalinhamento das tracks */
-.track:nth-child(odd) { margin-left: -20%; }
-.track:nth-child(even) { margin-left: 15%; }
-
-/* 4. BARRA DE PESQUISA */
-.search-box {
-  position: relative;
-  width: 280px;
-  z-index: 25;
-}
-
-.search-input {
-  width: 100%;
-  height: 42px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
-  padding: 0 20px 0 45px;
-  color: #fff;
-  outline: none;
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  color: #fff;
-  opacity: 0.6;
-}
-
-/* 5. RESPONSIVIDADE MOBILE (CORREÇÃO DA FAIXA PRETA) */
+/* Ajuste para mobile se precisar */
 @media (max-width: 768px) {
-  .hero {
-    width: 100% !important; /* Use 100% em vez de 100vw */
-    left: 0 !important;
+  .track {
+    font-size: 3.5rem;
   }
-
-  .hero-header-overlay {
-    top: 20px;
-    padding: 0 15px !important;
-    left: 0 !important;
-  }
-
-  .logo-coema {
-    position: absolute !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 110px !important;
-  }
-
-  .search-input { display: none; } /* Esconde o campo no mobile */
-  
-  .search-icon {
-    position: static;
-    transform: none;
-    width: 24px;
-    opacity: 1;
-  }
-
-  /* Rodapé Fixo Mobile */
-  .about-section, .contact-section {
-    position: fixed;
-    bottom: 0;
-    height: 65px;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(10px);
-    z-index: 2000;
-  }
-
-  .about-section { left: 0; border-right: 1px solid rgba(255,255,255,0.1); }
-  .contact-section { right: 0; }
-
-  .track { font-size: 3.5rem; }
 }

@@ -1,0 +1,86 @@
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Importante: box-sizing garante que o padding NÃO aumente a largura total */
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px; /* Reduzi um pouco para não apertar no desktop */
+  z-index: 2000;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+/* AGRUPAMENTO ESQUERDA */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Espaço entre Logo e Busca */
+}
+
+.brand-logo {
+  color: #fff;
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 6px 18px;
+}
+
+.search-icon {
+  width: 18px;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding-left: 10px;
+  outline: none;
+  width: 160px;
+  font-size: 0.85rem;
+}
+
+/* AGRUPAMENTO DIREITA (Ícones) */
+.header-right {
+  display: flex;
+  gap: 35px; /* Espaço entre os ícones */
+}
+
+.nav-icon-item img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1); /* 👈 Deixa os ícones BRANCOS */
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.8;
+}
+
+.nav-icon-item img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* RESPONSIVIDADE PARA CELULAR */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .header-left { flex-direction: column; gap: 15px; }
+  .search-input { width: 120px; }
+}

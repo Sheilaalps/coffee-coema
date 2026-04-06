@@ -1,5 +1,5 @@
 import "./App.css";
-import Sidebar from "./componentes/Sidebar";
+import Header from "./componentes/Header";
 import Hero from "./componentes/Hero";
 import Footer from "./componentes/Footer";
 import Carousel from "./componentes/Carrousel";
@@ -47,8 +47,6 @@ function App() {
   return (
     <div className="app-layout">
       {/* O Sidebar fica fora do SmoothScroll para ser fixo e independente */}
-      <Sidebar />
-
       <main className="main-content">
         <SmoothScroll>
           {/* CAMADA 1: O Hero com o vídeo (fica parado no fundo) */}
@@ -58,6 +56,7 @@ function App() {
 
           {/* CAMADA 2: O resto do site que "engole" o Hero ao subir */}
           <div className="reveal-content">
+            <Header />
             <Banner />
             <Carousel produtos={produtos} />
             <Footer />
