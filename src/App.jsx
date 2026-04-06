@@ -4,10 +4,9 @@ import Hero from "./componentes/Hero";
 import Footer from "./componentes/Footer";
 import Carousel from "./componentes/Carrousel";
 import Banner from "./componentes/Banner";
+import Mapa from "./componentes/Mapa";  
 import SmoothScroll from "./componentes/SmoothScroll";
 
-
-// Importando assets
 import imgLeve from "./assets/leve.svg";
 import imgModerado from "./assets/moderado.svg";
 import imgExpress from "./assets/express.svg";
@@ -46,25 +45,28 @@ function App() {
 
   return (
     <div className="app-layout">
-      {/* O Sidebar fica fora do SmoothScroll para ser fixo e independente */}
+      {/* Header fixo acima de todas as camadas */}
+      <Header /> 
+
       <main className="main-content">
         <SmoothScroll>
-          {/* CAMADA 1: O Hero com o vídeo (fica parado no fundo) */}
+          
+          {/* CAMADA 1: VÍDEO (FUNDO) */}
           <div className="sticky-wrapper">
             <Hero />
           </div>
 
-          {/* CAMADA 2: O resto do site que "engole" o Hero ao subir */}
+          {/* CAMADA 2: CONTEÚDO (GAVETA QUE SOBE) */}
           <div className="reveal-content">
-            <Header />
             <Banner />
             <Carousel produtos={produtos} />
+            <Mapa />
             <Footer />
           </div>
+
         </SmoothScroll>
       </main>
     </div>
   );
 }
-
 export default App;

@@ -2,6 +2,10 @@
 /* index.css */
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Tera:wght@100..900&display=swap');
 
+html {
+  scroll-behavior: smooth; /* Sem o !important para não forçar o script */
+}
+
 * {
   margin: 0;
   padding: 0;

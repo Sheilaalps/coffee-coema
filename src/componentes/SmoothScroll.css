@@ -1,10 +1,10 @@
-/* Necessário para o Lenis não bugar o scroll no Chrome/Safari */
+/* Correções específicas para o Lenis */
 html.lenis {
   height: auto;
 }
 
 .lenis.lenis-smooth {
-  scroll-behavior: auto;
+  scroll-behavior: auto !important; /* Força o navegador a ceder o controle ao Lenis */
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {

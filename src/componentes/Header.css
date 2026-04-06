@@ -3,21 +3,19 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* Importante: box-sizing garante que o padding NÃO aumente a largura total */
   box-sizing: border-box; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px; /* Reduzi um pouco para não apertar no desktop */
-  z-index: 2000;
+  padding: 20px 40px; 
   background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
 }
 
-/* AGRUPAMENTO ESQUERDA */
+
 .header-left {
   display: flex;
   align-items: center;
-  gap: 40px; /* Espaço entre Logo e Busca */
+  gap: 40px; 
 }
 
 .brand-logo {
@@ -54,16 +52,16 @@
   font-size: 0.85rem;
 }
 
-/* AGRUPAMENTO DIREITA (Ícones) */
+
 .header-right {
   display: flex;
-  gap: 35px; /* Espaço entre os ícones */
+  gap: 35px; 
 }
 
 .nav-icon-item img {
   width: 24px;
   height: 24px;
-  filter: brightness(0) invert(1); /* 👈 Deixa os ícones BRANCOS */
+  filter: brightness(0) invert(1); 
   cursor: pointer;
   transition: transform 0.2s, opacity 0.2s;
   opacity: 0.8;
@@ -74,7 +72,7 @@
   opacity: 1;
 }
 
-/* RESPONSIVIDADE PARA CELULAR */
+
 @media (max-width: 768px) {
   .main-header {
     padding: 20px;
@@ -83,4 +81,7 @@
   }
   .header-left { flex-direction: column; gap: 15px; }
   .search-input { width: 120px; }
+}
+section, .banner-section {
+  scroll-margin-top: 80px; 
 }

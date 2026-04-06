@@ -1,59 +1,60 @@
+/* 1. COMPATIBILIDADE COM O SCROLL SUAVE */
+html.lenis {
+  height: auto;
+}
 
-
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  background-color: #000;
-  /* Garante que nada escape para os lados */
-  overflow-x: hidden; 
+.lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+/* 2. A MÁGICA DO ENGAVETAMENTO */
+
+/* O container pai NÃO pode ter overflow: hidden, nem display: flex */
 .main-content {
-  margin-left: 0 !important;
-  width: 100% !important;
+  width: 100%;
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: block !important; 
+  overflow: visible !important; 
 }
 
-
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed !important;
-    left: 0;
-    top: 0;
-    height: 100dvh;
-    z-index: 9999;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-
-  .sidebar.active, .sidebar.open {
-    transform: translateX(0);
-  }
+/* CAMADA 1: O VÍDEO (Fica "preso" no topo enquanto você rola) */
+.sticky-wrapper {
+  position: -webkit-sticky; /* Suporte para Safari */
+  position: sticky;
+  top: 0;           /* Trava no topo da tela */
+  height: 100vh;    /* Ocupa a tela toda */
+  width: 100%;
+  z-index: 1;       /* Fica por baixo */
+  overflow: hidden;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0 !important;
-    width: 100% !important;
-    position: relative;
-  }
+/* CAMADA 2: O CONTEÚDO MARROM (Sobe e "engole" o vídeo) */
+.reveal-content {
+  position: relative;
+  z-index: 10;       /* Valor alto para passar NA FRENTE do vídeo */
+  width: 100%;
+  min-height: 100vh;
+  background-color: #361712 !important; /* COR SÓLIDA PARA COBRIR O VÍDEO */
+  
+  /* Sombra para dar profundidade na borda do banner */
+  box-shadow: 0 -100px 100px rgba(0, 0, 0, 0.9);
+  
+  /* Evita frestas de pixels entre as divisões */
+  margin-top: -1px; 
+}
 
-  .sidebar {
-    position: fixed !important;
-    left: 0;
-    top: 0;
-    height: 100dvh;
-    z-index: 9999;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease; /* Animação simples de deslizar */
-  }
-
-  .sidebar.active, .sidebar.open {
-    transform: translateX(0);
-  }
+/* 3. HEADER (Fica acima de tudo, inclusive das gavetas) */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; 
 }
