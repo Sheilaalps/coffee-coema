@@ -1,0 +1,70 @@
+/* Estilo da Página de Cardápio */
+.cardapio-container {
+  padding: 120px 20px 60px; /* Espaço para não ficar atrás do Header */
+  min-height: 100vh;
+  background-color: #fdfaf7; /* Um creme bem clarinho */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardapio-titulo {
+  font-family: 'Lexend Exa', sans-serif;
+  color: #4b2c20;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.cardapio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.cardapio-item {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.cardapio-item:hover {
+  transform: translateY(-5px);
+}
+
+.cardapio-item h3 {
+  color: #4b2c20;
+  margin-bottom: 10px;
+}
+
+.cardapio-item .preco {
+  color: #8DAF5B; /* Verde da sua Torra Leve */
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.btn-zap {
+  background-color: #25d366;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.btn-zap:hover {
+  background-color: #1ebe57;
+}

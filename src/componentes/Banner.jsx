@@ -1,5 +1,5 @@
-
 import './Banner.css';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
@@ -9,9 +9,15 @@ const Banner = () => {
         <p className="banner-subtitle">
           A experiência do café artesanal em cada detalhe.
         </p>
-        <button className="banner-btn">
-          Conheça Nossos Grãos
-        </button>
+        
+        {/* REGRAS: 
+            1. Removi o <button> de volta, o Link já faz o papel de botão.
+            2. Troquei o <a> por <Link> para funcionar o Router.
+            3. O 'to="/cardapio"' envia para a página que criamos no App.js. 
+        */}
+        <Link to="/cardapio" className="banner-btn">
+          CONHEÇA NOSSOS GRÃOS
+        </Link>
       </div>
     </section>
   );
