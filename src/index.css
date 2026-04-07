@@ -15,7 +15,7 @@ html {
 html, body {
   width: 100%;
   overflow-x: hidden; /* Trava qualquer tentativa de scroll lateral */
-  background-color: #000;
+  background-color: #43250b;
 }
 
 body {

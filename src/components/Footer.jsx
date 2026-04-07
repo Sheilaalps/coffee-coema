@@ -1,6 +1,6 @@
+import React from 'react';
 import "../components/Footer.css";
 import footerImg from "../assets/logo.png";
-import { Instagram, Facebook, Twitter } from 'lucide-react'; // Importando os ícones
 
 function Footer() {
   return (
@@ -20,17 +20,11 @@ function Footer() {
             <p className="footer-copy">© 2026 Todos os direitos reservados.</p>
           </div>
 
-          {/* Redes Sociais */}
+          {/* Redes Sociais - Agora com texto para não dar erro */}
           <div className="footer-social">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer">
-              <Instagram size={20} />
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer">
-              <Facebook size={20} />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer">
-              <Twitter size={20} />
-            </a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-link">Instagram</a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="social-link">Facebook</a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="social-link">Twitter</a>
           </div>
         </div>
 
