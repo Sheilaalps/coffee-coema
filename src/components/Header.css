@@ -1,0 +1,145 @@
+/* --- ESTILO BASE / DESKTOP --- */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px; 
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  z-index: 1000;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px; 
+}
+
+.brand-logo {
+  color: #fff;
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin: 0;
+  text-decoration: none;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 6px 18px;
+}
+
+.search-icon {
+  width: 18px;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding-left: 10px;
+  outline: none;
+  width: 160px;
+  font-size: 0.85rem;
+}
+
+.header-right {
+  display: flex;
+  gap: 35px; 
+  align-items: center;
+}
+
+.nav-icon-item img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1); 
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.8;
+}
+
+.nav-text-btn {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Lexend Tera', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  opacity: 0.8;
+}
+
+.divider {
+  color: #8DAF5B;
+  font-family: 'Lexend Tera', sans-serif;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px 20px;
+    flex-direction: row !important; /* Mantém logo de um lado e ícones do outro */
+    justify-content: space-between;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .header-left {
+    flex-direction: row !important;
+    gap: 10px;
+  }
+
+  .brand-logo {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  /* 3. A LUPA: No mobile ela vira apenas um ícone na linha do Header */
+  .search-container {
+    display: flex !important; /* Força aparecer */
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    margin-right: 5px; /* Espaço para não colar nos outros ícones */
+  }
+
+  .search-input {
+    display: none; /* Esconde a caixa de digitar no celular */
+  }
+
+  .search-icon {
+    width: 20px !important;
+    opacity: 1;
+  }
+
+  /* 4. ÍCONES: Remove o texto e deixa só os ícones no topo */
+  .header-right {
+    gap: 15px;
+  }
+
+  .nav-text-btn, .divider {
+    display: none !important; /* Esconde o texto do topo (ele vai pro footer nav) */
+  }
+
+  .nav-icon-item img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Scroll margin para seções */
+section, .banner-section {
+  scroll-margin-top: 80px; 
+}

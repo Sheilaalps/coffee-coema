@@ -1,0 +1,21 @@
+.mapa-container {
+  padding: 20px 10px; /* Reduzi o respiro vertical de 40px para 20px */
+  background-color: #361712;
+  text-align: center;
+}
+
+.mapa-titulo {
+  color: #B98B2B;
+  font-family: 'Lexend Exa', sans-serif;
+  margin-bottom: 15px; /* Menor distância entre título e mapa */
+  font-size: 1.2rem;   /* Título mais discreto */
+}
+
+.mapa-container iframe {
+  width: 100%;
+  max-width: 450px;    /* Reduzi de 600px para 450px para ficar mais estreito */
+  height: 250px;       /* Reduzi a altura de 350px para 250px */
+  border: 0;
+  border-radius: 12px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}

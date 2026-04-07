@@ -1,4 +1,4 @@
-/* 1. ESTRUTURA 3D */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Lexend+Tera:wght@100..900&display=swap');
 .card {
   width: 280px;  /* Tamanho ideal para caber o texto */
   height: 380px;
@@ -75,10 +75,26 @@
   font-family: 'Lexend Exa', sans-serif;
 }
 
-.info-verso h4 { font-size: 0.75rem; font-weight: 700; margin: 0; }
-.perfil-texto { font-size: 0.85rem; line-height: 1.4; }
-.detalhes-texto { font-size: 0.8rem; }
-.especificacao-texto { font-size: 0.7rem; opacity: 0.7; }
+.info-verso h4 {
+   font-size: 0.75rem;
+  font-weight: 700; 
+  margin: 0;
+  font-family: 'lexend exa', sans-serif;
+}
+.perfil-texto { 
+  font-size: 0.85rem; 
+  line-height: 1.4; 
+  
+}
+.detalhes-texto { 
+  font-size: 0.8rem;
+  font-family: 'lexend exa', sans-serif; 
+}
+.especificacao-texto { 
+  font-size: 0.7rem; 
+  opacity: 0.7; 
+  font-family: 'lexend exa', sans-serif; 
+}
 /* Container da Intensidade */
 .intensidade-box {
   display: flex;
@@ -117,11 +133,12 @@
   border: none;
   border-radius: 50px; /* Formato pílula */
   padding: 12px 30px;
-  font-family: 'Lexend Exa', sans-serif;
+  font-family: 'Lexend exa', sans-serif;
   font-size: 0.8rem;
   cursor: pointer;
   margin-top: 15px;
   transition: 0.3s;
+  font-family: 'lexend exa', sans-sarif;
 }
 
 .btn-compre:hover {

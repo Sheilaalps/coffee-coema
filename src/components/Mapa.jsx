@@ -2,25 +2,25 @@ import React from 'react';
 import { APIProvider, Map, AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
 
 const Mapa = () => {
-  // A chave deve ser uma STRING (entre aspas)
+  // 1. Aqui você criou a variável corretamente (com aspas)
   const API_KEY = 'AIzaSyDOftujVoOKYtt2949SjTTUfbNCcOfIH0s'; 
   
-  const position = { lat: -23.5505, lng: -46.6333 };
+  const position = { lat: -22.8068, lng: -43.3645 };
 
   return (
-    <section className="mapa-container" style={{ padding: '20px 0' }}>
-      <h2 className="mapa-titulo" style={{ textAlign: 'center', marginBottom: '20px' }}>
+    <section id="secao-mapa" className="mapa-container" style={{ padding: '20px 0' }}>
+      <h2 className="mapa-titulo" style={{ textAlign: 'center', marginBottom: '20px', color: '#fff', fontFamily: 'Lexend Exa' }}>
         Nossa Localização
       </h2>
       
-      {/* Garanti que a div tenha altura e largura visíveis */}
       <div style={{ height: '450px', width: '100%', borderRadius: '15px', overflow: 'hidden', position: 'relative' }}>
+        {/* 2. CORREÇÃO AQUI: Você deve usar a variável API_KEY que criou lá em cima */}
         <APIProvider apiKey={API_KEY}>
           <Map
-            style={{ width: '100%', height: '100%' }} // Adicionado para garantir preenchimento
+            style={{ width: '100%', height: '100%' }}
             defaultCenter={position}
             defaultZoom={15}
-            mapId={'fb5b718e67a2e887'} // Use os primeiros 16 caracteres do seu ID ou 'DEMO_MAP_ID'
+            mapId={'fb5b718e67a2e887'} 
             gestureHandling={'greedy'}
             disableDefaultUI={false}
           >
