@@ -23,3 +23,30 @@ body {
   line-height: 1.5;
   color: white; /* O padrão do seu site parece ser texto claro sobre fundo escuro */
 }
+
+/* 1. Força o Lenis a enxergar a altura correta */
+html.lenis, html.lenis body {
+  height: auto !important;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* 2. O AJUSTE CHAVE: O container do engavetamento */
+.main-content {
+  position: relative;
+  /* Se o scroll sumiu, verifique se não há um 'overflow: hidden' aqui */
+  overflow: visible !important; 
+  display: block !important;
+}
+
+/* 3. Garanta que o Sticky tenha um "espaço de manobra" */
+.sticky-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 1;
+  /* Importante: não pode ter 'overflow: hidden' no pai direto do sticky */
+}
